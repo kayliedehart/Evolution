@@ -7,8 +7,7 @@ class Player:
     self.cards=cards
 
   def receive_cards(self,cards):
-    for card in cards:
-      self.cards.append(card)
+    self.cards.extend(cards)
 
   def discard_card(self, game_state):
     chosen = self.cards[0]
