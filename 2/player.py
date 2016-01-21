@@ -41,4 +41,3 @@ class Player:
       raise TypeError("Not given a proper Game State.")
 
     return game_state["stacks"].index(smallest_stack)
-
