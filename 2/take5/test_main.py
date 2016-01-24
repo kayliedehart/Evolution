@@ -15,7 +15,8 @@ class TestMainMethods(unittest.TestCase):
     del self.game
 
   def test_end_of_round(self):
-      self.assertEqual('foo'.upper(), 'FOO')
+      # a game that's over
+      # a game that needs another round
 
 if __name__ == '__main__':
     unittest.main()

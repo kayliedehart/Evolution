@@ -1,5 +1,21 @@
 # Implements the protocols between the Player and the rest of the game components of 6 Nimmt!
 
+import components
+import dealer
+import player
+
+def end_of_round(players):
+	for player in players:
+		# print out points in descending order with player "name"
+		if player.bull >= 66:
+		else:
+			dealer = Dealer(players)
+			start_round(self)
+
+def start_round():
+	
+
+
 def main(players):
 	"""
 	Protocol: 
