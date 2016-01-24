@@ -15,3 +15,13 @@ class Card:
 
   def setBullNumber(num):
     self.bull = num
+
+
+class Stack:
+  self.cards = []
+
+  def getCards():
+    return self.cards
+
+  def setCards(card):
+    self.card.append(card)
