@@ -38,9 +38,12 @@ class Dealer:
 
 	def shuffleCards(self):
 		# reset the deck to be in random order
+		pass
 
 	def dealFirst(self):
-		hand = self.deck.pop(10)
+		hand = [self.deck.pop()]
+		for i in range(0, 9):
+			hand.append(self.deck.pop())
 		return hand
 
 	def updateStacks(self, players_card):
