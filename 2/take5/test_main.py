@@ -1,9 +1,9 @@
-# Unit-testing suite for 6 Nimmt! methods in main component
+# Unit-testing for main component methods. Due to lack of player component there are no tests.
 
 import unittest
 import dealer
 import components
-import player
+#import player
 import main
 
 class TestMainMethods(unittest.TestCase):
@@ -14,9 +14,6 @@ class TestMainMethods(unittest.TestCase):
   def tearDown(self):
     del self.game
 
-  def testEndOfRound(self):
-      # a game that's over
-      # a game that needs another round
 
 if __name__ == '__main__':
     unittest.main()
