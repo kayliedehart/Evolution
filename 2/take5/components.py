@@ -1,27 +1,29 @@
 # The basic components used by the Dealer and Players in 6 Nimmt!
+from random import randint
 
 class Card:
-	self.number =  # integer in range [1,104]. UNIQUE.
-	self.bull =  # integer in range [2,7]
+	self.number =  0
+	self.bull =  0
+  
+  def __init__(number):
+  	self.number = number
+  	self.bull = randint(2,8)
 
-  def getNumber():
+  def getNumber(self):
     return self.number
 
-  def setNumber(num):
-    self.number = num
-
-  def getBullNumber():
+  def getBullNumber(self):
     return self.bull
-
-  def setBullNumber(num):
-    self.bull = num
 
 
 class Stack:
   self.cards = []
 
-  def getCards():
+  def __init__(card):
+  	self.cards.append(card)
+
+  def getCards(self):
     return self.cards
 
-  def setCards(card):
-    self.card.append(card)
+  def setCards(self, card):
+    self.cards.append(card)
