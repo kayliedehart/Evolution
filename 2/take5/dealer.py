@@ -2,9 +2,9 @@
 import components
 
 class Dealer:
-	players = [] # list of Players, order matters.
-	deck = [] # Contains all remaining cards not in a Stack or held by a Player. At start of game, contains all possible Cards.
-	stacks = [] # always contains 4 Stacks
+	players = [] 
+	deck = [] 
+	stacks = []
 
 	def __init__(self, players_list):
 		self.players = players_list
@@ -37,7 +37,6 @@ class Dealer:
 		self.stacks = stacks
 
 	def shuffleCards(self):
-		# reset the deck to be in random order
 		pass
 
 	def dealFirst(self):
