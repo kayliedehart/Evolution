@@ -10,7 +10,7 @@ class Dealer:
 		self.players = players_list
 		for i in range(1, 105):
 			self.deck.append(components.Card(i))
-		shuffleCards()
+		self.shuffleCards()
 
 	def getPlayers(self):
 		return self.players
@@ -44,7 +44,36 @@ class Dealer:
 		return hand
 
 	def updateStacks(self, players_card):
-		# depending on players_card, hand back the necessary stacks
+		player = players_card[0]
+		card = players_card[1]
+		stacks_to_pass = []
+
+		def getKey(stack):
+			return stack.getCards()[-1].number
+
+		stacks = sorted(self.stacks, key=getKey(), reverse=True)
+		for stack in stacks:
+			if card.number > stack.getCards()[-1].number:
+				if len(stack) < 5:
+					stack.setCard(card)
+				else:
+					stacks_to_pass.append(stack)
+					self.removeStack(stack, card)
+					break
+			else:
+				pass
+				
+
+		return stacks_to_pass
+
+
+		"""
+			-If the Player's Card can be placed without penalty, return an empty list
+			-If the Player's Card results in an overflow (more than 5 cards in a Stack), pass that Stack to Player and update Stack with Player's Card
+			-If the Player's Card is smaller than all top Cards, return a list of all Stacks to the Player
+				5.2. Player indicates to Dealer which Stack they're keeping
+		"""
+		return stacks_to_pass
 
 	def removeStack(self, stack, players_card):
 		# remove stack Player chose and replace with stack of their card
