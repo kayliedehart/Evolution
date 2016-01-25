@@ -1,4 +1,4 @@
-# The basic components used by the Dealer and Players in 6 Nimmt!
+# The basic card and stack components for the main components to pass around
 import random
 from random import randint
 
