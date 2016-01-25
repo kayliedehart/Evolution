@@ -44,7 +44,6 @@ class Dealer:
 		return hand
 
 	def updateStacks(self, players_card):
-		player = players_card[0]
 		card = players_card[1]
 		stacks_to_pass = []
 
@@ -61,18 +60,9 @@ class Dealer:
 					self.removeStack(stack, card)
 					break
 			else:
-				pass
-				
+				if stack.index() == 3:
+					stacks_to_pass = stacks
 
-		return stacks_to_pass
-
-
-		"""
-			-If the Player's Card can be placed without penalty, return an empty list
-			-If the Player's Card results in an overflow (more than 5 cards in a Stack), pass that Stack to Player and update Stack with Player's Card
-			-If the Player's Card is smaller than all top Cards, return a list of all Stacks to the Player
-				5.2. Player indicates to Dealer which Stack they're keeping
-		"""
 		return stacks_to_pass
 
 	def removeStack(self, stack, players_card):
