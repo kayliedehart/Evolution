@@ -1,10 +1,10 @@
 # The Dealer of a 6 Nimmt! game, handles dealing Cards to Players and setting up the Stacks
 import components
 
-class Dealer(players_list, players_card):
-	self.players = [] # list of Players, order matters.
-	self.deck = [] # Contains all remaining cards not in a Stack or held by a Player. At start of game, contains all possible Cards.
-	self.stacks = [] # always contains 4 Stacks
+class Dealer:
+	players = [] # list of Players, order matters.
+	deck = [] # Contains all remaining cards not in a Stack or held by a Player. At start of game, contains all possible Cards.
+	stacks = [] # always contains 4 Stacks
 
 	def __init__(self, players_list):
 		self.players = players_list
@@ -42,7 +42,7 @@ class Dealer(players_list, players_card):
 	def dealFirst(self):
 		hand = self.deck.pop(10)
 		return hand
-	
+
 	def updateStacks(self, players_card):
 		# depending on players_card, hand back the necessary stacks
 

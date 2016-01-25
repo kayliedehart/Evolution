@@ -13,14 +13,14 @@ class TestDealerMethods(unittest.TestCase):
   def tearDown(self):
     del self.dealer
 
-  def test_deal_first(self):
+  def testDealFirst(self):
     # a game with no players
     # a game with players
 
-  def test_make_stacks(self):
+  def testMakeStacks(self):
     # just create four stacks
 
-  def test_update_stacks(self):
+  def testUpdateStacks(self):
     # player's card just added to stack
     # player's card overflows, give them the current, reset stack with their card
     # give player choice of stacks
