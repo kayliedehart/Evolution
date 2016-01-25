@@ -25,6 +25,8 @@ All test files can be run by entering python <filename> on the command line.
 
 The player.py class is designed to be run with the rest of the game program, and will need to be integrated first before running.
 
+For running our implementation of the Nimmt! game, run python main.py on the commandline. 
+
 READING THE CODE:
 
 player.py and test_player.py are read top down for easiest understanding. When implementing the provided interface we made the assumption that we needed to remove the card from the players hand in discard_card() as it wasn’t specified. We also chose to throw an out of bounds exception if the program tries to call pick_stack with a list of stacks with length < 1.
