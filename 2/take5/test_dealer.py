@@ -1,29 +1,35 @@
 # Unit-testing suite for 6 Nimmt! methods in dealer component
-
 import unittest
 import dealer
 import components
-import player
+#import player
 
 class TestDealerMethods(unittest.TestCase):
+	def setUp(self):
+		self.dealerEmpty1 = dealer.Dealer([])
+		self.dealerEmpty2 = dealer.Dealer([])
 
-  def setUp(self):
-    self.dealer = dealer.Dealer()
+	def tearDown(self):
+		del self.dealerEmpty1
+		del self.dealerEmpty2
 
-  def tearDown(self):
-    del self.dealer
+	def testGetPlayersEmpty(self):
+		self.assertEqual(self.dealerEmpty1.getPlayers(), [])
 
-  def testDealFirst(self):
-    # a game with no players
-    # a game with players
+	def testGetDeck(self):
+		self.assertEqual(self.dealerEmpty1.getDeck(), self.dealerEmpty2.getDeck())
 
-  def testMakeStacks(self):
-    # just create four stacks
+	def testSetStacks(self):
+		self.dealerEmpty1.setStacks()
+		self.assertEqual(len(self.dealerEmpty1.getStacks()), 4)
 
-  def testUpdateStacks(self):
-    # player's card just added to stack
-    # player's card overflows, give them the current, reset stack with their card
-    # give player choice of stacks
+	def testGetStacksEmpty(self):
+		self.assertEqual(len(self.dealerEmpty1.getStacks()), 0)
+
+	def testDealFirst(self):
+		self.dealerEmpty1.setStacks()
+		self.assertEqual(len(self.dealerEmpty1.dealFirst()), 10)
+
 
 if __name__ == '__main__':
-    unittest.main()
+		unittest.main()
