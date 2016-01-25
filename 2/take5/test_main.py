@@ -14,7 +14,7 @@ class TestMainMethods(unittest.TestCase):
   def tearDown(self):
     del self.game
 
-  def test_end_of_round(self):
+  def testEndOfRound(self):
       # a game that's over
       # a game that needs another round
 

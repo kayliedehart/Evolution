@@ -4,9 +4,9 @@ import components
 import dealer
 import player
 
-class Main(players):
-	self.players = []
-	self.dealer = None
+class Main:
+	players = []
+	dealer = None
 
 	def __init__(players):
 		players_list = []
@@ -27,7 +27,7 @@ class Main(players):
 	def startRound(self):
 		dealer = dealer.Dealer(players_list)
 		self.dealer = dealer
-		
+
 		for player in players_list:
 			player.setHand(dealer.dealFirst())
 
@@ -63,7 +63,7 @@ class Main(players):
 		7. Players pass their self.bull to main
 		8. main announces winner of game or creates new Dealer with current list of Players and repeats steps 2-7.
 		"""
-		
-		
-		
+
+
+
 

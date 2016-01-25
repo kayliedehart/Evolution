@@ -2,28 +2,28 @@
 from random import randint
 
 class Card:
-	self.number =  0
-	self.bull =  0
-  
-  def __init__(number):
-  	self.number = number
-  	self.bull = randint(2,8)
+	number =  0
+	bull =  0
 
-  def getNumber(self):
-    return self.number
+	def __init__(self, number):
+		self.number = number
+		self.bull = randint(2,8)
 
-  def getBullNumber(self):
-    return self.bull
+	def getNumber(self):
+		return self.number
+
+	def getBullNumber(self):
+		return self.bull
 
 
 class Stack:
-  self.cards = []
+	cards = []
 
-  def __init__(card):
-  	self.cards.append(card)
+	def __init__(self, card):
+		self.cards.append(card)
 
-  def getCards(self):
-    return self.cards
+	def getCards(self):
+		return self.cards
 
-  def setCards(self, card):
-    self.cards.append(card)
+	def setCards(self, card):
+		self.cards.append(card)
