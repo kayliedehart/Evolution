@@ -1,4 +1,4 @@
-# Unit-testing suite for 6 Nimmt! methods in dealer component
+# Unit-testing suite for 6 Nimmt! methods in dealer component (no player component)
 import unittest
 import dealer
 import components
