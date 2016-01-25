@@ -69,6 +69,5 @@ class Dealer:
 		return stacks_to_pass
 
 	def removeStack(self, stack, players_card):
-		# remove stack Player chose and replace with stack of their card
-		return self.stacks
+		[[players_card] if x==stack else x for x in self.stacks]
 
