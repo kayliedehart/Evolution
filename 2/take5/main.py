@@ -16,16 +16,21 @@ class Main:
 		runGame()
 
 	def endOfRound(self):
-					"""
-		7. Players pass their self.bull to main
-		8. main announces winner of game or creates new Dealer with current list of Players and repeats steps 2-7.
-		"""
+		points_list = []
 		for player in self.players:
-			# print out points in descending order with player "name"
-			if player.bull >= 66:
-			else:
-				dealer = Dealer(players)
-				start_round(self)
+			points_list.append((player.name, player.getBullPoints()))
+
+		def getKey(item):
+			return item[1]
+
+		players = sorted(points_list, key=getKey())
+
+		if players[0][1] >= 66:
+			announcement = {}
+			# do some string interpolation, print it
+		else:
+			self.runGame()
+			
 
 	def startRound(self):
 		dealer = dealer.Dealer(players_list)
