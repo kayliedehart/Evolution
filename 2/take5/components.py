@@ -7,13 +7,19 @@ class Card:
 
 	def __init__(self, number):
 		self.number = number
-		self.bull = randint(2,8)
+		self.bull = setBullNumber()
 
 	def getNumber(self):
 		return self.number
 
 	def getBullNumber(self):
 		return self.bull
+
+	def setBullNumber(self, card):
+		if not card:
+			self.bull = randint(2,8)
+		else:
+			self.bull = card
 
 
 class Stack:
