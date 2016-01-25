@@ -52,7 +52,7 @@ class Main:
 		for players_card in cards_played:
 			stacks = self.dealer.updateStacks(players_card)
 			choice = self.players[players_card[0]].pickStack(stacks)
-			self.dealer.removeStack(choice)
+			self.dealer.removeStack(choice, players_card)
 
 	def runGame(self):
 
@@ -63,5 +63,9 @@ class Main:
 
 		endOfRound()
 
-Main()		
+def main():
+	Main()
+
+if __name__ == "__main__":
+    main()
 
