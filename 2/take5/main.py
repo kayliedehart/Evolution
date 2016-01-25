@@ -5,8 +5,8 @@ import dealer
 import player
 
 class Main(players):
-	self.players = []
-	self.dealer = None
+	players = []
+	dealer = None
 
 	def __init__(players):
 		players_list = []
@@ -37,8 +37,9 @@ class Main(players):
 			player.setCurrentStacks(dealer.getStacks())
 
 	def turn(self):
+		cards_played
 		for player in self.players:
-			player.playCard()
+			cards_played.append(player.playCard())
 
 
 
@@ -51,18 +52,7 @@ class Main(players):
 			turn()
 
 		endOfRound()
-		"""
-		4. Each Player passes 1 card to the Dealer
-		5.1. Dealer gives Player with smallest Card.number the updated Stacks according to the Player's Card;
-			-If the Player's Card can be placed without penalty, return an empty list
-			-If the Player's Card results in an overflow (more than 5 cards in a Stack), pass that Stack to Player and update Stack with Player's Card
-			-If the Player's Card is smaller than all top Cards, return a list of all Stacks to the Player
-				5.2. Player indicates to Dealer which Stack they're keeping
-			Dealer moves on and repeats step 5.1 with Player with next smallest Card.number until all Cards have been placed
-		6. Repeat steps 4 and 5 until Players are out of Cards
-		7. Players pass their self.bull to main
-		8. main announces winner of game or creates new Dealer with current list of Players and repeats steps 2-7.
-		"""
+		
 		
 		
 		
