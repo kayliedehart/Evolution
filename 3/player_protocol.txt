@@ -72,7 +72,7 @@ Communication Protocol Diagram:
       round, endOfRound will not send       |                                          |             endOfRound            |                                               |
       a message, but instead startRound()   +-> +---------------------------------+    | --------------------------------------------------------------------------------> |
       will be called by the server              | {score:[(name, points)          |    |           disconnect [ack]        |                                               |
-      and the protocol will continue            |         (name, points)          |    | <———————————————————————————————— | disconnect():                                 |
+      and the protocol will continue            |         (name, points)          |    | <================================ | disconnect():                                 |
       from startRound                           |         (name, points)          |    |                                   |  |                                            |
                                                 |          ... ]                  |    |                                   |  +-> +----------------------------+           |
                                                 |         response: "disconnect" }|    |                                   |      | { closeConnection: True }  |           |
@@ -80,7 +80,7 @@ Communication Protocol Diagram:
       representative of each players                                                   |                                   |                                               |
       last point values                                                                |                                                                                   |
                                                                                        |           disconnect [ack]                                                        |
-      If no ack received from player                                                   | <-------------------------------------------------------------------------------- |
+      If no ack received from player                                                   | <================================================================================ |
       after startRound() or endOfRound(),                                              |                                                                                   |
       repeat last message (retry),                                                     |                                                                                   |
       then timeout & close connection                                                  |
