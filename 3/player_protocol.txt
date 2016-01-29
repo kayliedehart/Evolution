@@ -14,7 +14,7 @@ Communication Protocol Diagram:
                                                                                        |                                   |                                               |
                                                                                        |                                   |                                               |
                                                                                        |                                   |                                               |
-                                          StartRound(sys.argv)                         |                                   |                                               |
+                                          startRound()                                 |                                   |                                               |
       gameId is unique per player           |                                          | --------------------------------> |                                               |
       and randomly assigned                 +->  +--------------------------------+    |            start-round            |                                               |
                                                  | { gameId: int                  |    | --------------------------------------------------------------------------------> |
@@ -47,10 +47,10 @@ Communication Protocol Diagram:
                                                   +-------------------------------+    |                                   |                                               |
                                                                                        |                                   |                                               |
       Main collects a list of Card        updateStacks(card):                          |            updateStacks           |                                               |
-      played from each player's             |                                          | ————————————————————————————————> | pickStacks(deck):                             |
+      played from each player's             |                                          | ————————————————————————————————> | pickStack(deck):                              |
       playCard() method. For each card      +-> +---------------------------------+    |                                   |  |                                            |
       (in value order), if the card would       | { gameId: int                   |    |                                   |  +-> +----------------------+                 |
-      require the player to choose a            |   response: "pickStack"         |    |            pickStacks             |      | { choice: Stack      |                 |
+      require the player to choose a            |   response: "pickStack"         |    |            pickStack              |      | { choice: Stack      |                 |
       Stack, then updateStacks() would          |   deck: [ Stack                 |    | <———————————————————————————————— |      |   gameId: int }      |                 |
       return a message, else for that           |           Stack,                |    |                                   |      +----------------------+                 |
       player, no JSON for updateStacks()        |           Stack,                |    |                                   |                                               |
@@ -63,7 +63,7 @@ Communication Protocol Diagram:
                                                                                        | <-------------------------------------------------------------------------------- |
                                                                                        |          updateStacks             |                                               |
                                                                                        | --------------------------------------------------------------------------------> |
-                                                                                       |           pickStacks              |                                               |
+                                                                                       |           pickStack               |                                               |
                                                                                        | <-------------------------------------------------------------------------------- |
                                                                                        |                                   |                                               |
                                                                                        |                                   |                                               |
@@ -119,10 +119,10 @@ Signatures for Player Object:
             playCard( [ [(49, 2)], [(28, 3), (93, 3)], [(39, 2), (99, 5)], [(34, 5), (49, 6), (102, 3)], [(11, 2)] ]) -> { chosenCard: (96, 4),
                                                                                                                            gameId: 392 }
 
-      pickStacks: deck -> JSON( { choice: Stack, gameId: int } )
+      pickStack: deck -> JSON( { choice: Stack, gameId: int } )
           FUNCTION: chooses a stack for the player to collect and tells the server what stack that is
           EXAMPLE:
-            pickStacks( [ [(49, 2)], [(28, 3), (93, 3)], [(39, 2), (99, 5)], [(34, 5), (49, 6), (102, 3)], [(11, 2)] ]) -> { chosenStack: [(49, 2)]
+            pickStack( [ [(49, 2)], [(28, 3), (93, 3)], [(39, 2), (99, 5)], [(34, 5), (49, 6), (102, 3)], [(11, 2)] ]) -> { chosenStack: [(49, 2)]
                                                                                                                              gameId: 392 }
 
       disconnect:  -> Json( { closeConnection: True } )
