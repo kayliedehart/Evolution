@@ -52,4 +52,6 @@ reorg.patch is a patch that ensures the files are all in the right location in t
 
 3minbull.patch is a patch that changes the minimum number of bull points possible on a card from 2 to 3.
 
+smallestfirst.patch is a patch that makes the player play the smallest card first. This patch is more than one line due to us patching it off a different patch.
+
 3minbull.patch, handsize.patch, maxcardval.patch, maxstack.patch, and smallestfirst.patch all must be applied after the other patches in order for them to patch properly. 
