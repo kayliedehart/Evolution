@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 # A remote proxy wrapper for a Player in 6 Nimmt!
 
 import socket
@@ -8,11 +7,17 @@ import json
 import player
 
 PLAYER_NAME = "Joe"
+BUFFERSIZE = 4096
+HOST = '127.0.0.1'
+PORT = 45678
 
 class RemoteProxyPlayer:
 	player = player.Player(PLAYER_NAME)
 	last_received = None
 	round_in_progress = False
+
+	def __init__(self):
+		self.main()
 
 	def start_round(self, lcard):
 		"""
@@ -43,33 +48,33 @@ class RemoteProxyPlayer:
 		return stack_to_keep
 
 	def main(self):
-		HOST = ''
-		PORT = 45678
-		s = None
-		for res in socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC, socket.SOCK_STREAM):
-		    af, socktype, proto, canonname, sa = res
-		    try:
-		        s = socket.socket(af, socktype, proto)
-		    except socket.error as msg:
-		        s = None
-		        continue
-		    try:
-		        s.connect(sa)
-		    except socket.error as msg:
-		        s.close()
-		        s = None
-		        continue
-		    break
-		if s is None:
-		    raise Exception('Error: could not open socket')
+		"""
+		Setup and manage TCP connection to game server; deliver messages as Python
+		objects to the appropriate player proxy method, return their responses (as JSON) 
+		to the game server.
+		"""
+		
+	    try:
+	        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	    except socket.error as msg:
+	        raise Exception('Socket error {} : {}'.format(msg[0], msg[1]))
 
-		data = s.recv()
+	    try:
+	        s.connect((HOST, PORT))
+	    except socket.error as msg:
+	    	raise Exception('Socket error {} : {}'.format(msg[0], msg[1]))
+		
+
+		data = s.recv(BUFFERSIZE)
 		message = json.load(data)
 		while message:
-			if ('start-round' in message) and not round_in_progress:
-				ack = self.start_round(message['start-round'])
-				s.send(ack)
-				round_in_progress = True
+			if ('start-round' in message):
+				if not round_in_progress:
+					ack = self.start_round(message['start-round'])
+					s.send(ack)
+					round_in_progress = True
+				else:
+					s.send(json.dump(False))
 			elif 'take-turn' in message:
 				if round_in_progress and not ('choose' in message):
 					players_card = self.take_turn(message['take-turn'])
@@ -81,12 +86,11 @@ class RemoteProxyPlayer:
 				if round_in_progress and (last_received == 'take-turn') and not ('take-turn' in message):
 					stack_to_keep = self.choose(message['choose'])
 					s.send(stack_to_keep)
+					last_received == 'choose'
 				else:
 					s.send(json.dump(False))
 			else:
-				pass
-
-		#s.close()
+				s.close()
 
 if __name__ == "__main__":
-    main()
+    RemoteProxyPlayer()
