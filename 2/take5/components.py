@@ -1,6 +1,8 @@
 # The basic card and stack components for the main components to pass around
-import random
 from random import randint
+
+MAXBULL = 7
+MINBULL = 2
 
 class Card:
 	number = 0
@@ -8,7 +10,7 @@ class Card:
 
 	def __init__(self, number):
 		self.number = number
-		self.bull = self.setBullNumber(False)
+		self.setBullNumber(None)
 
 	def getNumber(self):
 		return self.number
@@ -17,8 +19,9 @@ class Card:
 		return self.bull
 
 	def setBullNumber(self, number):
-		if not number:
-			self.bull = random.randint(2,8)
+		if (type(number) is not int) or (number < MINBULL) or (number > MAXBULL):
+			random_bull = randint(MINBULL, MAXBULL+1)
+			self.bull = random_bull
 		else:
 			self.bull = number
 
@@ -27,10 +30,16 @@ class Stack:
 	cards = []
 
 	def __init__(self, card):
-		self.cards.append(card)
+		self.cards = [card]
 
 	def getCards(self):
 		return self.cards
 
 	def setCard(self, card):
 		self.cards.append(card)
+
+	def getLength(self):
+		length = 0
+		for card in self.cards:
+			length += 1
+		return length
