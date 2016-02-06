@@ -1,0 +1,17 @@
+//expected responses for 1-in.json test
+
+[
+  true
+]
+
+[
+  [100, 7]
+]
+
+[
+  [[102, 2]]
+]
+
+[
+  false
+]
