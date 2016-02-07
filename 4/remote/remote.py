@@ -23,6 +23,9 @@ class RemoteProxyPlayer:
     self.main()
 
   def parse_lcard(self, lcard):
+    """
+    Converts the given LCard into a components.Card
+    """
     list_of_Cards = []
     for card in lcard:
       new_card = components.Card(card[0])
@@ -32,6 +35,9 @@ class RemoteProxyPlayer:
     return list_of_Cards
 
   def parse_deck(self, deck):
+    """
+    Converts a given Deck of LCards into a components.Stack of Cards
+    """
     list_of_Stacks = []
     for lcard in deck:
       stack = self.parse_lcard(lcard)
@@ -42,7 +48,7 @@ class RemoteProxyPlayer:
   def start_round(self, lcard):
     """
     Receives JSON from the server indicating the start of a round and the
-    hand dealt to the Player. Passes these cards to the Player and sends 
+    hand dealt to the Player. Passes these cards to the Player and sends
     back an acknowledgement to the game server
     """
     self.player.setHand(lcard)
@@ -60,8 +66,8 @@ class RemoteProxyPlayer:
 
   def choose(self, stacks):
     """
-    Receives a list of Stacks the Player must choose one of to keep. Returns 
-    the chosen Stack. 
+    Receives a list of Stacks the Player must choose one of to keep. Returns
+    the chosen Stack.
     """
     stack_to_keep = self.player.pickStack(stacks)
     stack_to_keep = json.dump(stack_to_keep)
@@ -70,7 +76,7 @@ class RemoteProxyPlayer:
   def main(self):
     """
     Setup and manage TCP connection to game server; deliver messages as Python
-    objects to the appropriate player proxy method, return their responses (as JSON) 
+    objects to the appropriate player proxy method, return their responses (as JSON)
     to the game server.
     """
     try:
@@ -82,7 +88,7 @@ class RemoteProxyPlayer:
       s.connect((HOST, PORT))
     except socket.error as msg:
       raise Exception('Socket error {} : {}'.format(msg[0], msg[1]))
-    
+
 
     data = s.recv(BUFFERSIZE)
     message = json.load(data)
