@@ -24,7 +24,7 @@ class RemoteProxyPlayer:
 
   def parse_lcard(self, lcard):
     """
-    Converts the given LCard into a components.Card
+    Converts the given LCard into a Stack
     """
     list_of_Cards = []
     for card in lcard:
@@ -36,7 +36,7 @@ class RemoteProxyPlayer:
 
   def parse_deck(self, deck):
     """
-    Converts a given Deck of LCards into a components.Stack of Cards
+    Converts a given Deck of LCards into list of Stacks
     """
     list_of_Stacks = []
     for lcard in deck:
@@ -93,8 +93,8 @@ class RemoteProxyPlayer:
     data = s.recv(BUFFERSIZE)
     message = json.load(data)
     while message:
-      if ('start-round' in message):
-        hand = self.parse_lcard(message['start-round'])
+      if 'start-round' == message[0]:
+        hand = self.parse_lcard(message[1:])
         if not round_in_progress and (len(hand) == HANDSIZE):
           ack = self.start_round(hand)
           s.send(ack)
@@ -102,19 +102,19 @@ class RemoteProxyPlayer:
         else:
           s.send(json.dump(False))
           s.close()
-      elif 'take-turn' in message:
-        list_of_Stacks = self.parse_deck(message['take-turn'])
-        if round_in_progress and (len(list_of_Stacks) == NUMBER_OF_DECKS) and not ('choose' in message):
-          players_card = self.take_turn(message['take-turn'])
+      elif 'take-turn' == message[0]:
+        list_of_Stacks = self.parse_deck(message[1:])
+        if round_in_progress and (len(list_of_Stacks) == NUMBER_OF_DECKS):
+          players_card = self.take_turn(list_of_Stacks)
           s.send(players_card)
           last_received == 'take-turn'
         else:
           s.send(json.dump(False))
           s.close()
-      elif 'choose' in message:
-        list_of_Stacks = self.parse_deck(message['choose'])
-        if round_in_progress and (len(list_of_Stacks) == NUMBER_OF_DECKS) and (last_received == 'take-turn') and not ('take-turn' in message):
-          stack_to_keep = self.choose(message['choose'])
+      elif 'choose' == message[0]:
+        list_of_Stacks = self.parse_deck(message[1:])
+        if round_in_progress and (len(list_of_Stacks) == NUMBER_OF_DECKS) and (last_received == 'take-turn'):
+          stack_to_keep = self.choose(list_of_Stacks)
           s.send(stack_to_keep)
           last_received == 'choose'
         else:
