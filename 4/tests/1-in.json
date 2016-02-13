@@ -1,5 +1,3 @@
-//tests starting game functionality, taking turn functionality, choose functionality, and missed timed messages functionality
-
 [
   "start-round",
   [[43, 3], [19, 4], [23, 5], [12, 3], [87, 1], [13, 5], [100, 7], [84, 3], [34, 2], [14, 4]]
