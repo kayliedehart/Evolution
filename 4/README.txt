@@ -6,7 +6,7 @@ FILES:
 
 /remote/remote.py is a remote proxy wrapper for previously implemented player
 
-/remote/test_remote.py is a server to test remote proxy wrapper
+/remote/test_remote.py is unit tests for non-socket methods in remote proxy wrapper
 
 /remote/remote is a symlink to remote.py
 
