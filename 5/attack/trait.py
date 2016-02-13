@@ -3,6 +3,14 @@
 from enum import Enum
 
 class Trait(Enum):
+
+	def isAid(self):
+		"""
+		Checks whether the given Trait is Aid: that is, if it helps
+		neighboring Species.
+		"""
+		return False
+
 	def isOffensive(self):
 		"""
 		Checks whether the given Trait is Offensive
@@ -21,6 +29,16 @@ class Trait(Enum):
 		"""
 		return False
 
+class Aid(Trait):
+	warning_call = "warning-call"
+	symbiosis = "symbiosis"
+
+	def isAid(self):
+		"""
+		Checks whether the given Trait is Aid: that is, if it helps
+		neighboring Species.
+		"""
+		return True
 
 class Offensive(Trait):
 	carnivore = "carnivore"
@@ -39,8 +57,6 @@ class Defensive(Trait):
 	hard_shell = "hard-shell"
 	herding = "herding"
 	horns = "horns"
-	symbiosis = "symbiosis"
-	warning_call = "warning-call"
 
 	def isDefensive(self):
 		"""
