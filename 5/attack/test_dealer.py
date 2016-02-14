@@ -15,8 +15,8 @@ class TestDealer(unittest.TestCase):
     del self.dealer
     del self.attacker
     del self.defender
-    del self.neighbor1
-    del self.neighbor2
+    del self.neighborleft
+    del self.neighborright
 
   def testAttackableBothEmpty(self):
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), None)
