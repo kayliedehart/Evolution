@@ -26,6 +26,12 @@ class Species:
 		"""
 		Update the number of food tokens for this species.
 		"""
+		self.food = nat
+
+	def addToFood(self, nat):
+		"""
+		Update the number of food tokens for this species.
+		"""
 		self.food += nat
 
 	def getPopulation(self):
@@ -35,6 +41,12 @@ class Species:
 		return self.population
 
 	def setPopulation(self, nat):
+		"""
+		Update the population size of this species.
+		"""
+		self.population = nat
+
+	def addToPopulation(self, nat):
 		"""
 		Update the population size of this species.
 		"""

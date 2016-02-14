@@ -38,7 +38,7 @@ class TestDealer(unittest.TestCase):
     self.defender.setTraits([Aid.symbiosis])
     self.defender.setBodySize(1)
     self.neighborright.setBodySize(2)
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, 0, self.neighborright]), False)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, None, self.neighborright]), False)
 
   def testBadSymbiosis(self):
     self.defender.setTraits([Aid.symbiosis])
@@ -91,3 +91,5 @@ class TestDealer(unittest.TestCase):
   def testAttackerAttacksSelf(self):
     self.assertEqual(self.dealer.attackable([self.attacker, self.attacker]), None)
 
+if __name__ == '__main__':
+    unittest.main()
