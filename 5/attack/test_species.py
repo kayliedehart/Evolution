@@ -1,4 +1,7 @@
 # unit tests for a Species in the game Evolution
+import unittest
+import species
+import trait
 
 class TestSpecies(unittest.TestCase):
 
@@ -23,10 +26,10 @@ class TestSpecies(unittest.TestCase):
     self.assertEqual(self.spec.getBodySize(), 2)
 
   def testSetAndGetTraits(self):
-    self.spec.setTraits([Offensive.carnivore])
-    self.assertEqual(self.spec.getTraits(), [Offensive.carnivore])
-    self.spec.discardTraits(0)
-    self.assertEqual(self.spec.getTraits(), None)
+    self.spec.setTraits([trait.Offensive.carnivore])
+    self.assertEqual(self.spec.getTraits(), [trait.Offensive.carnivore])
+    self.spec.discardTrait(0)
+    self.assertEqual(self.spec.getTraits(), [])
 
 if __name__ == '__main__':
     unittest.main()

@@ -71,8 +71,6 @@ class Species:
 		"""
 		Choose a trait in the current set of self.traits to discard.
 		"""
-		# for now, just get rid of a random trait. Eventually prompt player.
-		index = randint(MAXTRAITS+1)
 		self.traits.pop(index)
 
 	def setTraits(self, lot):

@@ -22,48 +22,48 @@ class TestDealer(unittest.TestCase):
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), None)
 
   def testAttackableCarnivoreBasic(self):
-    self.attacker.setTraits([Offensive.carnivore])
+    self.attacker.setTraits([trait.Offensive.carnivore])
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), True)
 
   def testAttackableClimbing(self):
-    self.attacker.setTraits([Defensive.climbing])
-    self.defender.setTraits([Defensive.climbing])
+    self.attacker.setTraits([trait.Defensive.climbing])
+    self.defender.setTraits([trait.Defensive.climbing])
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), False)
 
   def testAttackableNotClimbing(self):
-    self.defender.setTraits([Defensive.climbing])
+    self.defender.setTraits([trait.Defensive.climbing])
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), True)
 
   def testSymbiosis(self):
-    self.defender.setTraits([Aid.symbiosis])
+    self.defender.setTraits([trait.Aid.symbiosis])
     self.defender.setBodySize(1)
     self.neighborright.setBodySize(2)
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender, None, self.neighborright]), False)
 
   def testBadSymbiosis(self):
-    self.defender.setTraits([Aid.symbiosis])
+    self.defender.setTraits([trait.Aid.symbiosis])
     self.defender.setBodySize(2)
     self.neighborright.setBodySize(1)
     self.neighborleft.setBodySize(4)
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender, self.neighborleft, self.neighborright]), True)
 
   def testWarningCall(self):
-    self.neighborright.setTraits([Aid.warningCall])
+    self.neighborright.setTraits([trait.Aid.warningCall])
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender, self.neighborleft, self.neighborright]), False)
 
   def testAmbush(self):
-    self.attacker.setTraits([Offensive.ambush])
-    self.neighborright.setTraits([Aid.warningCall])
+    self.attacker.setTraits([trait.Offensive.ambush])
+    self.neighborright.setTraits([trait.Aid.warningCall])
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender, self.neighborleft, self.neighborright]), True)
 
   def testPackHunting(self):
-    self.attacker.setTraits([Offensive.pack_hunting])
+    self.attacker.setTraits([trait.Offensive.pack_hunting])
     self.attacker.setPopulation(3)
     self.defender.setPopulation(5)
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), True)
 
   def testFailPackHunting(self):
-    self.attacker.setTraits([Offensive.pack_hunting])
+    self.attacker.setTraits([trait.Offensive.pack_hunting])
     self.attacker.setPopulation(3)
     self.defender.setPopulation(6)
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), False)
