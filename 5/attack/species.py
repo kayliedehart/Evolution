@@ -71,6 +71,8 @@ class Species:
 		"""
 		Choose a trait in the current set of self.traits to discard.
 		"""
+		if index > len(self.traits):
+			raise Exception("Not a valid index for traits")
 		self.traits.pop(index)
 
 	def setTraits(self, lot):
