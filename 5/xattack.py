@@ -4,6 +4,7 @@
 import dealer
 import sys
 import json
+import species
 
 class TestHarness:
 	def __init__(self):
@@ -17,10 +18,23 @@ class TestHarness:
 		situation = sys.argv
 		print situation
 
+		species_list = []
+		for speciesboard in situation:
+			if speciesboard:
+				s = species.Species()
+				s.setFood(speciesboard[0][1])
+				s.setBodySize([1][1])
+				s.setPopulation([2][1])
+				s.setTraits([3][1])
+				species_list.append(s)
+			else:
+				species_list.append(False)
+
+
 		new_dealer = dealer.Dealer()
 
 		print "created a dealer"
-		result = new_dealer.attackable(situation)
+		result = new_dealer.attackable(species_list)
 		print result		
 
 if __name__ == "__main__":

@@ -1,8 +1,63 @@
 # The Dealer in a game of Evolution
 
 class Dealer:
+	wateringHole = []
+	deck = None
 
 	def __init__(self):
+		self.wateringHole = []
+
+	def neighborsHelp(self, neighbors):
+		"""
+		Returns boolean value for if a Species' neighbors can help prevent an attack, 
+		given a list of neighboring Species
+		"""
+		for neighbor in neighbors:
+			if 'warning-call' in neighbor.traits:
+				return True
+		return False
+
+	def canBurrow(self, defender):
+		"""
+		Returns boolean whether a defender can successfully use burrowing
+		"""
+		if defender.getFood() >= defender.getPopulation():
+			return True
+		else:
+			return False
+
+	def goodSymbiosis(self, defender, neighborRight):
+		"""
+		Returns whether symbiosis helps the defender avoid attack, ie:
+		if the neighbor to their right has a larger body size then the defender
+		"""
+		if defender.getBodySize() < neighborRight.getBodySize():
+			return True
+		else:
+			return False
+
+	def blockingShell(self, attacker, defender):
+		"""
+		Returns whether a defender with hard_shell can defend against their attacker
+		"""
+		if (attacker.getBodySize() - defender.getBodySize()) <= 3:
+			return True
+		else:
+			return False
+
+	def herdingHelp(self, attacker, defender):
+		"""
+		Returns whether a defender with herding can successfully block an attacker
+		"""
+	 	attackers_popsize = attacker.getPopulation()
+		if 'pack-hunting' in attacker.traits:
+			attackers_popsize += attacker.getBodySize()
+
+		if attackers_popsize <= defender.getPopulation():
+			return True
+		else:
+			return False
+
 		
 
 	def attackable(self, situation):
@@ -11,35 +66,26 @@ class Dealer:
 			A Situation is [defender:Species, attacker:Species, (optional neighbor:Species, neighbor:Species)]
 			Returns a Boolean. 
 			"""
-			defender, attacker, neighbor1, neighbor2 = situation
-			if 'carnivore' in attacker.getTraits():
-				if 'carnivore' in defender.getTraits():
+			attacker, defender, neighborLeft, neighborRight = situation
+			neighbors = [neighborLeft, neighborRight]
+			if 'carnivore' in attacker.traits:
+				if ('ambush' not in attacker.traits) and self.neighborsHelp(neighbors):
 					return False
-				else: 
-					# There is a metric fuckton to do here, I just want it to be valid Python for now
+				elif 'climbing' in defender.traits and 'climbing' not in attacker.traits:
+					return False
+				elif 'burrowing' in defender.traits and self.canBurrow(defender):
+					return False
+				elif 'symbiosis' in defender.traits and self.goodSymbiosis(defender, neighborRight):
+					return False
+				elif 'hard-shell' in defender.traits and self.blockingShell(attacker, defender):
+					return False
+				elif 'herdingHelp' in defender.traits and self.herdingHelp(attacker, defender):
+					return False
+				elif attacker == defender:
+					raise Exception("A species cannot attack itself")
+				else:
 					return True
 			else:
 				raise Exception("Attacking Species must be a carnivore")
 
-
-
-
-	 # situation = [carnivore, [],] -> True
-	 #    s2 = no traits, no traits -> None
-	 #    s3 = carnivore, burrowing -> False
-	 #    s4 = carnivore climbing, climbing -> True
-	 #    s5 = carnivore climbing, burrowing -> False
-	 #    s6 = carnivore, symbiosis body ==1, body ==2 -> False
-	 #    s7 = carnivore, symbiosis body ==2, body == 1 -> True
-	 #    s8 = carnivore, none, warning_call -> False
-	 #    s9 = carnivore ambush, none, warning_call -> True
-	 #    s10 = carnivore pack_hunting popSize==3, herding popSize==5 -> True
-	 #    s11 = carnivore pack_hunting popSize==3, herding popSize==6 -> False
-	 #    s12 = carnivore, burrowing foodTokens==5 popSize==5 -> False
-	 #    s13 = carnivore, burrowing foodTokens==4 popSize==5 -> True
-	 #    s14 = carnivore body==5, hard_shell body==2 -> False
-	 #    s15 = carnivore body==5, hard_shell body==1 -> True
-
-	 #    s16 = attacker == defender -> None
-    
 
