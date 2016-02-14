@@ -74,13 +74,6 @@ class Species:
 				self.discardTrait()
 				self.traits.append(trait)
 
-	def attackable(self, situation):
-		"""
-		Checks to see if this species is attackable in the given Situation.
-		A Situation is [defender:Species, attacker:Species, (optional neighbor:Species, neighbor:Species)]
-		Returns a Boolean. 
-		"""
-
 
 
 
