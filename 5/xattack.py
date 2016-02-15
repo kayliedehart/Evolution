@@ -28,7 +28,8 @@ class TestHarness:
 				s.setFood(speciesboard[0][1])
 				s.setBodySize(speciesboard[1][1])
 				s.setPopulation(speciesboard[2][1])
-				s.setTraits(speciesboard[3][1])
+				for t in speciesboard[3][1]:
+					s.setTraits([trait.Trait(t)])
 				species_list.append(s)
 			else:
 				species_list.append(False)

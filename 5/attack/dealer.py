@@ -15,7 +15,7 @@ class Dealer:
 		"""
 		for neighbor in neighbors:
 			if neighbor:
-				if trait.Aid.warning_call in neighbor.traits:
+				if trait.Trait.warning_call in neighbor.traits:
 					return True
 		return False
 
@@ -52,7 +52,7 @@ class Dealer:
 		Returns whether a defender with herding can successfully block an attacker
 		"""
 	 	attackers_popsize = attacker.getPopulation()
-		if trait.Offensive.pack_hunting in attacker.traits:
+		if trait.Trait.pack_hunting in attacker.traits:
 			attackers_popsize += attacker.getBodySize()
 
 		if attackers_popsize <= defender.getPopulation():
@@ -70,20 +70,20 @@ class Dealer:
 			"""
 			attacker, defender, neighborLeft, neighborRight = situation
 			neighbors = [neighborLeft, neighborRight]
-			if trait.Offensive.carnivore in attacker.traits:
+			if trait.Trait.carnivore in attacker.traits:
 				if defender.getPopulation() == 0:
 					return False
-				if (trait.Offensive.ambush not in attacker.traits) and self.neighborsHelp(neighbors):
+				if (trait.Trait.ambush not in attacker.traits) and self.neighborsHelp(neighbors):
 					return False
-				elif (trait.Offensive.climbing in defender.traits) and not (trait.Offensive.climbing in attacker.traits):
+				elif (trait.Trait.climbing in defender.traits) and not (trait.Trait.climbing in attacker.traits):
 					return False
-				elif trait.Defensive.burrowing in defender.traits and self.canBurrow(defender):
+				elif trait.Trait.burrowing in defender.traits and self.canBurrow(defender):
 					return False
-				elif trait.Aid.symbiosis in defender.traits and self.goodSymbiosis(defender, neighborRight):
+				elif trait.Trait.symbiosis in defender.traits and self.goodSymbiosis(defender, neighborRight):
 					return False
-				elif trait.Defensive.hard_shell in defender.traits and self.blockingShell(attacker, defender):
+				elif trait.Trait.hard_shell in defender.traits and self.blockingShell(attacker, defender):
 					return False
-				elif trait.Defensive.herding in defender.traits and self.herdingHelp(attacker, defender):
+				elif trait.Trait.herding in defender.traits and self.herdingHelp(attacker, defender):
 					return False
 				elif attacker == defender:
 					raise Exception("A species cannot attack itself")
