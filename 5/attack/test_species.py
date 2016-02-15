@@ -26,8 +26,8 @@ class TestSpecies(unittest.TestCase):
     self.assertEqual(self.spec.getBodySize(), 2)
 
   def testSetAndGetTraits(self):
-    self.spec.setTraits([trait.Offensive.carnivore])
-    self.assertEqual(self.spec.getTraits(), [trait.Offensive.carnivore])
+    self.spec.setTraits([trait.Trait.carnivore])
+    self.assertEqual(self.spec.getTraits(), [trait.Trait.carnivore])
     self.spec.discardTrait(0)
     self.assertEqual(self.spec.getTraits(), [])
 
