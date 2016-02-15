@@ -100,7 +100,8 @@ class Species:
 			if len(self.traits) < MAXTRAITS:
 				self.traits.append(trait)
 			else:
-				self.discardTrait()
+				#for now, FIFO
+				self.discardTrait(0)
 				self.traits.append(trait)
 
 

@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # a test harness for the attackable method in Dealer for a game of Evolution
 
-import dealer
+from attack import dealer
+from attack import trait
+from attack import species
 import sys
 import json
-import species
+
 
 class TestHarness:
 	def __init__(self):
