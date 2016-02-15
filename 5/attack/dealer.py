@@ -69,6 +69,8 @@ class Dealer:
 			attacker, defender, neighborLeft, neighborRight = situation
 			neighbors = [neighborLeft, neighborRight]
 			if 'carnivore' in attacker.traits:
+				if defender.getPopulation() == 0:
+					return False
 				if ('ambush' not in attacker.traits) and self.neighborsHelp(neighbors):
 					return False
 				elif 'climbing' in defender.traits and 'climbing' not in attacker.traits:
