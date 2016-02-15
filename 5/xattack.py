@@ -18,7 +18,7 @@ class TestHarness:
 			return a Boolean to stdout whether or not the attack is successful.
 		"""
 		with open(sys.argv[1], 'r') as f:
-			situation = f.read()
+			situation = json.load(f)
 			f.close()
 
 		species_list = []
@@ -26,9 +26,9 @@ class TestHarness:
 			if speciesboard:
 				s = species.Species()
 				s.setFood(speciesboard[0][1])
-				s.setBodySize([1][1])
-				s.setPopulation([2][1])
-				s.setTraits([3][1])
+				s.setBodySize(speciesboard[1][1])
+				s.setPopulation(speciesboard[2][1])
+				s.setTraits(speciesboard[3][1])
 				species_list.append(s)
 			else:
 				species_list.append(False)
