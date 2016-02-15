@@ -26,7 +26,7 @@ READING/RUNNING THE CODE:
 In order for the code to run you must either be using python version 3.4 or backport using the following command on the command line:
   pip install enum34
 
-The executable file xattack is runnable by typing ./xattack in the command line from the 5/ directory.
+The executable file xattack is runnable by typing './xattack < expected-input-json > expected-output-json' in the command line from the 5/ directory where expected-input-json and expected-output-json are valid json for testing the attackable method.
 
 All the test classes can be run on the command line by typing 'python <filename>'
 
