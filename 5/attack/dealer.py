@@ -1,4 +1,5 @@
 # The Dealer in a game of Evolution
+import trait
 
 class Dealer:
 	wateringHole = []
@@ -13,7 +14,7 @@ class Dealer:
 		given a list of neighboring Species
 		"""
 		for neighbor in neighbors:
-			if 'warning-call' in neighbor.traits:
+			if warning_call in neighbor.traits:
 				return True
 		return False
 
@@ -50,7 +51,7 @@ class Dealer:
 		Returns whether a defender with herding can successfully block an attacker
 		"""
 	 	attackers_popsize = attacker.getPopulation()
-		if 'pack-hunting' in attacker.traits:
+		if pack_hunting in attacker.traits:
 			attackers_popsize += attacker.getBodySize()
 
 		if attackers_popsize <= defender.getPopulation():
@@ -68,20 +69,20 @@ class Dealer:
 			"""
 			attacker, defender, neighborLeft, neighborRight = situation
 			neighbors = [neighborLeft, neighborRight]
-			if 'carnivore' in attacker.traits:
+			if trait.Offensive.carnivore in attacker.traits:
 				if defender.getPopulation() == 0:
 					return False
-				if ('ambush' not in attacker.traits) and self.neighborsHelp(neighbors):
+				if (trait.Offensive.ambush not in attacker.traits) and self.neighborsHelp(neighbors):
 					return False
-				elif 'climbing' in defender.traits and 'climbing' not in attacker.traits:
+				elif climbing in defender.traits and climbing not in attacker.traits:
 					return False
-				elif 'burrowing' in defender.traits and self.canBurrow(defender):
+				elif burrowing in defender.traits and self.canBurrow(defender):
 					return False
-				elif 'symbiosis' in defender.traits and self.goodSymbiosis(defender, neighborRight):
+				elif symbiosis in defender.traits and self.goodSymbiosis(defender, neighborRight):
 					return False
-				elif 'hard-shell' in defender.traits and self.blockingShell(attacker, defender):
+				elif hard_shell in defender.traits and self.blockingShell(attacker, defender):
 					return False
-				elif 'herdingHelp' in defender.traits and self.herdingHelp(attacker, defender):
+				elif herdingHelp in defender.traits and self.herdingHelp(attacker, defender):
 					return False
 				elif attacker == defender:
 					raise Exception("A species cannot attack itself")

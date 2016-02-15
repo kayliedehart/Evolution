@@ -56,7 +56,6 @@ class Defensive(Trait):
 	burrowing = "burrowing"
 	hard_shell = "hard-shell"
 	herding = "herding"
-	horns = "horns"
 
 	def isDefensive(self):
 		"""
@@ -66,6 +65,7 @@ class Defensive(Trait):
 
 class Neutral(Trait):
 	cooperation = "cooperation"
+	horns = "horns"
 	fat_tissue = "fat-tissue"
 	fertile = "fertile"
 	foraging = "foraging"

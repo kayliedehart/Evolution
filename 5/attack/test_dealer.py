@@ -19,26 +19,26 @@ class TestDealer(unittest.TestCase):
     del self.neighborright
 
   def testAttackableBothEmpty(self):
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), None)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), None)
 
   def testAttackableCarnivoreBasic(self):
     self.attacker.setTraits([trait.Offensive.carnivore])
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), True)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), True)
 
   def testAttackableClimbing(self):
     self.attacker.setTraits([trait.Defensive.climbing])
     self.defender.setTraits([trait.Defensive.climbing])
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), False)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), False)
 
   def testAttackableNotClimbing(self):
     self.defender.setTraits([trait.Defensive.climbing])
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), True)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), True)
 
   def testSymbiosis(self):
     self.defender.setTraits([trait.Aid.symbiosis])
     self.defender.setBodySize(1)
     self.neighborright.setBodySize(2)
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, None, self.neighborright]), False)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, self.neighborright]), False)
 
   def testBadSymbiosis(self):
     self.defender.setTraits([trait.Aid.symbiosis])
@@ -60,36 +60,36 @@ class TestDealer(unittest.TestCase):
     self.attacker.setTraits([trait.Offensive.pack_hunting])
     self.attacker.setPopulation(3)
     self.defender.setPopulation(5)
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), True)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), True)
 
   def testFailPackHunting(self):
     self.attacker.setTraits([trait.Offensive.pack_hunting])
     self.attacker.setPopulation(3)
     self.defender.setPopulation(6)
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), False)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), False)
 
   def testBurrowing(self):
     self.defender.setFood(5)
     self.defender.setPopulation(5)
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), True)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), True)
 
   def testFailBurrowing(self):
     self.defender.setFood(4)
     self.defender.setPopulation(5)
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), False)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), False)
 
   def testHardShell(self):
     self.attacker.setBodySize(5)
     self.defender.setBodySize(2)
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), False)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), False)
 
   def testFailHardShell(self):
     self.attacker.setBodySize(5)
     self.defender.setBodySize(1)
-    self.assertEqual(self.dealer.attackable([self.attacker, self.defender]), True)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), True)
 
   def testAttackerAttacksSelf(self):
-    self.assertEqual(self.dealer.attackable([self.attacker, self.attacker]), None)
+    self.assertEqual(self.dealer.attackable([self.attacker, self.attacker, False, False]), None)
 
 if __name__ == '__main__':
     unittest.main()
