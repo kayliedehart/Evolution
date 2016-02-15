@@ -17,8 +17,9 @@ class TestHarness:
 		For a given Situation (a JSON of [attacking:Species, defending:Species, (neighbor:Species), (neighbor:Species)], 
 			return a Boolean to stdout whether or not the attack is successful.
 		"""
-		situation = sys.argv
-		print situation
+		with open(sys.argv[1], 'r') as f:
+			situation = f.read()
+			f.close()
 
 		species_list = []
 		for speciesboard in situation:
@@ -35,8 +36,8 @@ class TestHarness:
 
 		new_dealer = dealer.Dealer()
 
-		print "created a dealer"
 		result = new_dealer.attackable(species_list)
+		sys.stdout = open(sys.argv[2], 'w')
 		print result		
 
 if __name__ == "__main__":

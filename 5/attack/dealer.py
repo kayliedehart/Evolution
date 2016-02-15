@@ -75,7 +75,7 @@ class Dealer:
 					return False
 				if (trait.Offensive.ambush not in attacker.traits) and self.neighborsHelp(neighbors):
 					return False
-				elif trait.Offensive.climbing in defender.traits and not trait.Offensive.climbing in attacker.traits:
+				elif (trait.Offensive.climbing in defender.traits) and not (trait.Offensive.climbing in attacker.traits):
 					return False
 				elif trait.Defensive.burrowing in defender.traits and self.canBurrow(defender):
 					return False
