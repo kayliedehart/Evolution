@@ -15,6 +15,7 @@ class Species:
 		self.food = 0
 		self.population = 1
 		self.bodysize = 0
+		self.traits = []
 
 	def getFood(self):
 		"""

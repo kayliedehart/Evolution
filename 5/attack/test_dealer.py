@@ -21,7 +21,7 @@ class TestDealer(unittest.TestCase):
 
   def testAttackableBothEmpty(self):
     self.attacker.discardTrait(0)
-    with self.assertRaises("Attacking Species must be a carnivore"):
+    with self.assertRaises(Exception("Attacking Species must be a carnivore")):
       self.dealer.attackable([self.attacker, self.defender, False, False])
 
   def testAttackableCarnivoreBasic(self):
@@ -97,7 +97,7 @@ class TestDealer(unittest.TestCase):
     self.assertEqual(self.dealer.attackable([self.attacker, self.defender, False, False]), True)
 
   def testAttackerAttacksSelf(self):
-    with self.assertRaises("A species cannot attack itself"):
+    with self.assertRaises(Exception("A species cannot attack itself")):
       self.dealer.attackable([self.attacker, self.attacker, False, False])
 
 if __name__ == '__main__':

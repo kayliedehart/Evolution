@@ -23,7 +23,7 @@ class Dealer:
 		"""
 		Returns boolean whether a defender can successfully use burrowing
 		"""
-		if defender.getFood() >= defender.getPopulation():
+		if defender.getFood() == defender.getPopulation():
 			return True
 		else:
 			return False
@@ -71,7 +71,9 @@ class Dealer:
 			attacker, defender, neighborLeft, neighborRight = situation
 			neighbors = [neighborLeft, neighborRight]
 			if trait.Trait.carnivore in attacker.traits:
-				if defender.getPopulation() == 0:
+				if attacker == defender:
+					raise Exception("A species cannot attack itself")
+				elif defender.getPopulation() == 0:
 					return False
 				if (trait.Trait.ambush not in attacker.traits) and self.neighborsHelp(neighbors):
 					return False
@@ -85,8 +87,6 @@ class Dealer:
 					return False
 				elif trait.Trait.herding in defender.traits and self.herdingHelp(attacker, defender):
 					return False
-				elif attacker == defender:
-					raise Exception("A species cannot attack itself")
 				else:
 					return True
 			else:
