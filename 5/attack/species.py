@@ -105,6 +105,81 @@ class Species:
 				self.discardTrait(0)
 				self.traits.append(trait)
 
+	def neighborsHelp(self, neighborLeft, neighborRight):
+		"""
+		Returns boolean value for if a Species' neighbors can help prevent an attack, 
+		given a list of neighboring Species
+		"""
+		for neighbor in [neighborLeft, neighborRight]:
+			if neighbor:
+				if trait.Trait.warning_call in neighbor.traits:
+					return True
+		return False
+
+	def canBurrow(self, defender):
+		"""
+		Returns boolean whether a defender can successfully use burrowing
+		"""
+		return  defender.getFood() == defender.getPopulation()
+
+	def goodSymbiosis(self, defender, neighborRight):
+		"""
+		Returns whether symbiosis helps the defender avoid attack, ie:
+		if the neighbor to their right has a larger body size then the defender
+		"""
+		if neighborRight:
+			return defender.getBodySize() < neighborRight.getBodySize()
+		return False
+
+	def blockingShell(self, attacker, defender):
+		"""
+		Returns whether a defender with hard_shell can defend against their attacker
+		"""
+		return (attacker.getBodySize() - defender.getBodySize()) <= 3
+
+	def herdingHelp(self, attacker, defender):
+		"""
+		Returns whether a defender with herding can successfully block an attacker
+		"""
+	 	attackers_popsize = attacker.getPopulation()
+		if trait.Trait.pack_hunting in attacker.traits:
+			attackers_popsize += attacker.getBodySize()
+
+		return attackers_popsize <= defender.getPopulation()
+
+
+	def attackable(self, situation):
+			"""
+			Checks to see if an attack is successful in the given Situation.
+			A Situation is [defender:Species, attacker:Species, (optional neighbor:Species, neighbor:Species)]
+			Returns a Boolean. 
+			"""
+			attacker, defender, neighborLeft, neighborRight = situation
+			if trait.Trait.carnivore in attacker.traits:
+				if attacker == defender:
+					raise Exception("A species cannot attack itself")
+				if defender.getPopulation() == 0:
+					return False
+				if (trait.Trait.ambush not in attacker.traits) and self.neighborsHelp(neighborLeft, neighborRight):
+					return False
+				if (trait.Trait.climbing in defender.traits) and not (trait.Trait.climbing in attacker.traits):
+					return False
+				if trait.Trait.burrowing in defender.traits and self.canBurrow(defender):
+					return False
+				if trait.Trait.symbiosis in defender.traits and self.goodSymbiosis(defender, neighborRight):
+					return False
+				if trait.Trait.hard_shell in defender.traits and self.blockingShell(attacker, defender):
+					return False
+				if trait.Trait.herding in defender.traits and self.herdingHelp(attacker, defender):
+					return False
+				else:
+					return True
+			else:
+				raise Exception("Attacking Species must be a carnivore")
+
+
+
+
 
 
 
