@@ -6,7 +6,7 @@ import trait
 class TestSpecies(unittest.TestCase):
 
   def setUp(self):
-    self.spec = species.Species()
+    self.spec = species.Species(0, 1, 1, [])
 
   def tearDown(self):
     del self.spec
