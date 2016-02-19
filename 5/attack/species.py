@@ -156,7 +156,7 @@ class Species:
 			"""
 			attacker, defender, neighborLeft, neighborRight = situation
 			if trait.Trait.carnivore in attacker.traits:
-				if attacker == defender:
+				if attacker is defender:
 					raise Exception("A species cannot attack itself")
 				if defender.getPopulation() == 0:
 					return False

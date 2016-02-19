@@ -1,0 +1,14 @@
+[[["food",Nat],
+     ["body",Nat],
+     ["population",Nat],
+     ["traits",LOT]],
+     
+     [["id",Natural+],
+     ["species",LOS],
+     ["bag",Natural]],
+
+     [["food",Nat],
+     ["body",Nat],
+     ["population",Nat],
+     ["traits",LOT]]
+]

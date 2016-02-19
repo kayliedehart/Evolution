@@ -12,15 +12,12 @@ class TestHarness:
 	def __init__(self):
 		self.main()
 
-	def main(self):
+	def parse_situation(self, situation):
 		"""
-		For a given Situation (a JSON of [attacking:Species, defending:Species, (neighbor:Species), (neighbor:Species)], 
-			return a Boolean to stdout whether or not the attack is successful.
+		Reconstruct the JSON input of a situation into a list of
+		[attacking:Species, defending:Species, (neighbor:Species), (neighbor:Species)]
+		and return that list.
 		"""
-		with open(sys.argv[1], 'r') as f:
-			situation = json.load(f)
-			f.close()
-
 		species_list = []
 		for speciesboard in situation:
 			if speciesboard:
@@ -33,12 +30,21 @@ class TestHarness:
 				species_list.append(s)
 			else:
 				species_list.append(False)
+		return species_list
 
+	def main(self):
+		"""
+		For a given Situation (a JSON of [attacking:Species, defending:Species, (neighbor:Species), (neighbor:Species)], 
+			return a Boolean to stdout whether or not the attack is successful.
+		"""
+		situation = json.load(sys.argv[1])
 
-		new_dealer = dealer.Dealer()
+		species_list = self.parse_situation(situation)
 
-		result = new_dealer.attackable(species_list)
-		sys.stdout = open(sys.argv[2], 'w')
+		test_species = species.Species()
+
+		result = test_species.attackable(species_list)
+		
 		print result		
 
 if __name__ == "__main__":

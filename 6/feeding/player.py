@@ -5,35 +5,40 @@ class Player:
   species_boards = []
   food_bag = 0
   hand = []
+  player_id = 0
 
-  def __init__(self):
-    species_boards = []
-    food_bag = 0
-    hand = []
+  def __init__(self, ident, loSpeciesBoard, bag):
+    self.species_boards = loSpeciesBoard
+    self.food_bag = bag
+    self.hand = []
+    self.player_id = ident
 
   def setSpeciesBoards(self, loSpeciesBoard):
-    species_boards = loSpeciesBoard
+    self.species_boards = loSpeciesBoard
 
   def getSpeciesBoards(self):
-    return species_boards
+    return self.species_boards
 
   def setFoodBag(self, fb):
-    food_bag = fb
+    self.food_bag = fb
 
   def getFoodBag(self):
-    return food_bag
+    return self.food_bag
 
   def addToFoodBag(self, tokens):
-    food_bag = food_bag + tokens
+    self.food_bag += tokens
 
   def setHand(self, cards):
-    hand = cards
+    self.hand = cards
 
   def getHand(self):
-    return hand
+    return self.hand
 
   def addToHand(self, cards):
-    hand.extend(cards)
+    self.hand.extend(cards)
+
+  def setPlayerId(self, ident):
+    self.player_id = ident
 
   def feed(self, lop):
     # Holder for writing tests right now
