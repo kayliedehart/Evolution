@@ -11,11 +11,11 @@ class Species:
 	bodysize = 0
 	traits = []
 
-	def __init__(self):
-		self.food = 0
-		self.population = 1
-		self.bodysize = 0
-		self.traits = []
+	def __init__(self, food, population, bodysize, traits):
+		self.food = food
+		self.population = population
+		self.bodysize = bodysize
+		self.traits = traits
 
 	def getFood(self):
 		"""
