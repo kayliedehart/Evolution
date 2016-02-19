@@ -8,7 +8,7 @@ MAXTRAITS = 3
 class Species:
 	food = 0
 	population = 1
-	bodysize = 0
+	bodysize = 1
 	traits = []
 
 	def __init__(self, food, population, bodysize, traits):
