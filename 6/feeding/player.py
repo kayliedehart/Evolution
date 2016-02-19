@@ -40,6 +40,9 @@ class Player:
   def setPlayerId(self, ident):
     self.player_id = ident
 
+  def getPlayerId(self):
+    return self.player_id
+
   def feed(self, lop):
     # Holder for writing tests right now
     return true
