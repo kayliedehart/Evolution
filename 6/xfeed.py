@@ -5,20 +5,13 @@ from 5/attack import trait
 from 5/attack import species
 from feeding import player
 from cs4500-aalder-kdehart import parse_json.ParseJSON as parse_json
+from cs4500-aalder-kdehart import make_json.MakeJSON as make_json
 import sys
-import json
 
 
 class TestHarness:
 	def __init__(self):
 		self.main()
-		
-	
-	def encode_decision(self, decision):
-		"""
-		Translate the Player's feeding decision to json
-		"""
-		return true
 
 	def main(self):
 		"""
@@ -32,7 +25,7 @@ class TestHarness:
 
 		result = test_player.feed(players_list)
 
-		print result		
+		print make_json.make_meal(result)	
 
 if __name__ == "__main__":
 	TestHarness()

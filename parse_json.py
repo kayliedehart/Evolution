@@ -53,7 +53,7 @@ class ParseJSON:
 		for species in LOS:
 			# TODO CONTRACT CHECKING
 			this_species = species.Species(species[0], species[1], species[2], self.parse_traits(species[3]))
-			if 'fat-tissue' in this_species.getTraits():
+			if 'fat-tissue' in this_species.getTraits() and species[4]:
 				this_species.setFood(species[4])
 			species_list.append(this_species)
 

@@ -1,5 +1,4 @@
-# unit tests for parse_json
-
+# unit tests for make_json for Evolution
 from 5/attack import trait
 from 5/attack import species
 from 6/feeding import player
@@ -7,11 +6,11 @@ from 5/attack import dealer
 import json
 import unittest
 
-class TestParseJSON(unittest.TestCase):
+class TestMakeJSON(unittest.TestCase):
 
 	def setUp(self):
 		self.spec = species.Species()
-
+		
 
 	def tearDown(self):
 		del self.spec
