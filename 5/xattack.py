@@ -5,6 +5,7 @@ from attack import dealer
 from attack import trait
 from attack import species
 from cs4500-aalder-kdehart import parse_json.ParseJSON as parse_json
+from cs4500-aalder-kdehart import make_json.MakeJSON as make_json
 import sys
 
 
@@ -25,7 +26,7 @@ class TestHarness:
 
 		result = test_species.attackable(species_list)
 
-		print result		
+		print make_json.make_attack(result)
 
 if __name__ == "__main__":
 	TestHarness()
