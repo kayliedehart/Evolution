@@ -22,5 +22,3 @@ class Trait(Enum):
 	foraging = "foraging"
 	long_neck = "long-neck"
 	scavenger = "scavenger"
-
-

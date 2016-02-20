@@ -66,7 +66,7 @@ class Species:
 			raise Exception("Cannot add a negative value, and cannot set population to a value over 7")
 		else:
 			self.population = newPop
-	
+
 	def getBodySize(self):
 		"""
 		Get the current body size of this species.
@@ -105,9 +105,27 @@ class Species:
 				self.discardTrait(0)
 				self.traits.append(trait)
 
+	def isCarnivore(self):
+		"""
+		Checks if this species has the carnivore trait
+		"""
+		for trait in self.traits:
+			if (isinstance(Trait.carnivore, trait)):
+				return True
+		return False
+
+	def hasFatTissue(self):
+		"""
+		Checks if this species has the fat_tissue trait
+		"""
+		for trait in self.traits:
+			if (isinstance(Trait.fat_tissue, trait)):
+				return True
+		return False
+
 	def neighborsHelp(self, neighborLeft, neighborRight):
 		"""
-		Returns boolean value for if a Species' neighbors can help prevent an attack, 
+		Returns boolean value for if a Species' neighbors can help prevent an attack,
 		given a list of neighboring Species
 		"""
 		for neighbor in [neighborLeft, neighborRight]:
@@ -152,7 +170,7 @@ class Species:
 			"""
 			Checks to see if an attack is successful in the given Situation.
 			A Situation is [defender:Species, attacker:Species, (optional neighbor:Species, neighbor:Species)]
-			Returns a Boolean. 
+			Returns a Boolean.
 			"""
 			attacker, defender, neighborLeft, neighborRight = situation
 			if trait.Trait.carnivore in attacker.traits:
