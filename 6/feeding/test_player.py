@@ -82,6 +82,10 @@ class TestPlayer(unittest.TestCase):
     with self.assertRaises(Exception("Violation of Sequencing Constraints")):
       self.player.feed(self.opponents)
 
+  def testTwoEqualSizedHerb(self):
+    self.player.setSpeciesBoards([self.herbavore, self.herbavore2])
+    self.assertEqual(self.player.feed(self.opponents), self.herbavore)
+
 
   # Getter and Setter Tests
   def testGetSetSpeciesBoards(self):
