@@ -1,7 +1,6 @@
 # Automated unit tests for the test harness for the Player's feed method
 import unittest
 import xfeed
-import difflib
 from 5/attack import species
 from 5/attack import trait
 

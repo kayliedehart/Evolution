@@ -1,9 +1,9 @@
 # handles JSON parsing for the game Evolution
 
-from 5/attack import trait
-from 5/attack import species
-from feeding import player
-from attack import dealer
+import trait
+import species
+import player
+import dealer
 import json
 
 
@@ -52,9 +52,9 @@ class ParseJSON:
 		species_list = []
 		for species in LOS:
 			# TODO CONTRACT CHECKING
-			this_species = species.Species(species[0], species[1], species[2], self.parse_traits(species[3]))
-			if 'fat-tissue' in this_species.getTraits() and species[4]:
-				this_species.setFood(species[4])
+			this_species = species.Species(species[0][1], species[1][1], species[2][1], self.parse_traits(species[3][1]))
+			if (trait.Trait.fat_tissue in this_species.getTraits()) and species[4]:
+				this_species.setFood(species[4][1])
 			species_list.append(this_species)
 
 		return species_list
@@ -68,9 +68,9 @@ class ParseJSON:
      				["species",LOS],
      				["bag",Natural]]
 		"""
-		ident = player[0]
-		species = self.parse_loSpecies(player[1])
-		bag = player[2]
+		ident = player[0][1]
+		species = self.parse_loSpecies(player[1][1])
+		bag = player[2][1]
 
 		if (ident > 1) and (bag >= 0):
 			return player.Player(ident, species, bag)

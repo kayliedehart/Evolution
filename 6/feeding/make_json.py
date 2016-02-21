@@ -1,9 +1,9 @@
 # Create JSON representations of Evolution python objects
 
-from 5/attack import trait
-from 5/attack import species
-from feeding import player
-from attack import dealer
+import trait
+import species
+import player
+import dealer
 import json
 
 
@@ -19,7 +19,7 @@ class MakeJSON:
 																						   species.getTraits()))
 		if "fat-tissue" in species.getTraits():
 			###### FUCKING SHIT DO WE NEED TO KEEP TRACK OF THIS IN RETURNS?
-			str_species + "['fat-food', {}]]".format((0))
+			str_species + "['fat-food',{}]]".format((0))
 		else:
 			str_species + "]"
 		return str_species
@@ -28,10 +28,10 @@ class MakeJSON:
 		"""
 		Construct a string in the format of a JSON Player
 		"""
-		str_player = "[['id' {}],".format(player.getPlayerId())
+		str_player = "[['id',{}],".format(player.getPlayerId())
 		for species in player.getSpeciesBoards():
 			str_player + self.make_speciesPlus
-		str_player + "['bag', {}]]".format(player.getFoodBag())
+		str_player + "['bag',{}]]".format(player.getFoodBag())
 		return str_player
 
 	def make_meal(self, feeding_out):
@@ -45,13 +45,18 @@ class MakeJSON:
 		"""
 		if not feeding_out:
 			return json.dump(False)
-		meal = "["
-		for item in feeding_out:
-			if type(item) == species.Species:
-				meal + self.make_speciesPlus(item))
-			elif type(item) == player.Player:
-				meal + (self.make_player(item))
-		meal + "]"
+		if len(feeding_out) == 1:
+			return json.dumps(self.make_speciesPlus(feeding_out))
+		else:
+			meal = "["
+			for item in feeding_out:
+				if type(item) == species.Species:
+					meal + self.make_speciesPlus(item))
+				elif type(item) == int:
+					meal + "," + str(int)
+				elif type(item) == player.Player:
+					meal + "," + (self.make_player(item)) + ","
+			meal + "]"
 		return json.dumps(meal)
 
 	def make_attack(self, attack):
