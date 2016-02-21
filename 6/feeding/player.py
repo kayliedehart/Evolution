@@ -96,7 +96,7 @@ class Player:
 
     if (not trait):
       return chosen
-    elif (isinstance(trait.Trait.carnivore, trait)):
+    elif (trait.carnivore is trait):
       victim = self.strat.pickVictim(chosen, lop)
       if (not victim):
         return False

@@ -109,13 +109,13 @@ class Species:
 		"""
 		Checks if this species has the carnivore trait
 		"""
-		return ("carnivore" in self.getTraits())
+		return (trait.Trait.carnivore in self.getTraits())
 
 	def hasFatTissue(self):
 		"""
 		Checks if this species has the fat_tissue trait
 		"""
-		return ("fat_tissue" in self.getTraits())
+		return (trait.Trait.fat_tissue in self.getTraits())
 
 	def neighborsHelp(self, neighborLeft, neighborRight):
 		"""
@@ -170,6 +170,8 @@ class Species:
 			if trait.Trait.carnivore in attacker.traits:
 				if attacker is defender:
 					raise Exception("A species cannot attack itself")
+				if attacker.getBodySize() < defender.getBodySize():
+					return False
 				if defender.getPopulation() == 0:
 					return False
 				if (trait.Trait.ambush not in attacker.traits) and self.neighborsHelp(neighborLeft, neighborRight):

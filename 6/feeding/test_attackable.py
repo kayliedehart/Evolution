@@ -18,6 +18,11 @@ class testAttackable(unittest.TestCase):
     del self.neighborleft
     del self.neighborright
 
+  def testAttackableVictimTooBig(self):
+    self.attacker.setBodySize(1)
+    self.defender.setBodySize(7)
+    self.assertEqual(self.species.attackable([self.attacker, self.defender, False, False]), False)
+
   def testAttackableBothEmpty(self):
     self.attacker.discardTrait(0)
     with self.assertRaises(Exception("Attacking Species must be a carnivore")):

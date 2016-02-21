@@ -6,16 +6,36 @@ class Strategy:
   def __init__(self):
     pass
 
-  def sortByFat(self, loa):
+  def sortByLex(self, loa):
     """
-      Sorts the given list of species boards by the body size
+      Sorts the given list of species boards by the population, then food eaten, then body size from largest to smallest
       Given: a list of species boards
       Returns: a sorted list of species boards the same length as the list provided
     """
-    if (len(loa) > 1):
-      return sorted(loa, key=lambda species: species.bodysize, reverse = True)
-    else:
+    sloa = []
+    if(len(loa) == 0):
       return loa
+    sloa.append(loa.pop())
+
+    if(len(loa) > 0):
+      for animal in loa:
+        for board in sloa:
+          if (animal.getPopulation() > board.getPopulation()):
+            sloa.insert(sloa.index(board), animal)
+            break
+          elif ((animal.getPopulation() == board.getPopulation())
+            and (animal.getFood() > board.getFood())):
+            sloa.insert(sloa.index(board), animal)
+            break
+          elif ((animal.getPopulation() == board.getPopulation())
+            and (animal.getFood() == board.getFood())
+            and (animal.getBodySize() > board.getBodySize())):
+            sloa.insert(sloa.index(board), animal)
+            break
+          elif (sloa.index(board) == (len(sloa)-1) ):
+            sloa.append(animal)
+            break
+    return sloa
 
   def stereotypeAnimals(self, lob):
     """
@@ -67,9 +87,9 @@ class Strategy:
     carnivores = []
     herbivores = []
 
-    sortedByFatSpeciesBoards = self.sortByFat(lob)
+    sortedSpeciesBoards = self.sortByLex(lob)
 
-    fat_species, carnivores, herbivores = self.stereotypeAnimals(sortedByFatSpeciesBoards)
+    fat_species, carnivores, herbivores = self.stereotypeAnimals(sortedSpeciesBoards)
     return self.findFattest(fat_species, carnivores, herbivores)
 
   def compileSpecies(self, lop):
@@ -80,7 +100,7 @@ class Strategy:
     """
     boards = []
     for player in lop:
-      for board in player.getSpeciesBoards:
+      for board in player.getSpeciesBoards():
         boards.append((board, player))
     return boards
 
@@ -90,19 +110,7 @@ class Strategy:
       Given: a list of tuples of species and the players that contain that species
       Returns: a list of tuples ordered by species body size (large -> small) that contain a player and a species that player owns
     """
-    sortedPlayerSpecies = []
-
-    for playerSpecies in lobap:
-      play, spec = playerSpecies
-      for item in sortedPlayerSpecies:
-        splay, sspec = item
-        if(spec.getBodySize() > sspec.getBodySize()):
-          sortedPlayerSpecies.insert(sortedPlayerSpecies.index(item), playerSpecies)
-          break
-        elif ((sortedPlayerSpecies.index(item) + 1) == sortedPlayerSpecies.size()):
-          sortedPlayerSpecies.append(playerSpecies)
-
-    return sortedPlayerSpecies
+    return sorted(lobap, key=lambda board_player: board_player[0].getBodySize(), reverse = True)
 
   def getNeighbors(self, play, board):
     """
@@ -110,16 +118,16 @@ class Strategy:
       Given: a player and a species belonging to that player
       Returns: a tuple of the left then right neighbors to the given board in the given player
     """
-    boards = play.getSpeciesBoards
+    boards = play.getSpeciesBoards()
     for species in boards:
       if species is board:
         index = boards.index(species)
         left = False
         right = False
         if index != 0:
-          left = play.getSpeciesBoards[index-1]
-        if index != (boards.size() - 1):
-          right = play.getSpeciesBoards[index+1]
+          left = play.getSpeciesBoards()[index-1]
+        if index != (len(boards) - 1):
+          right = play.getSpeciesBoards()[index+1]
         return (left, right)
     raise Exception("Invalid Input")
 
@@ -138,7 +146,7 @@ class Strategy:
 
     #go down the list until it finds something it can eat
     for playerSpecies in boardsAndPlayers:
-      play, board = playerSpecies
+      board, play = playerSpecies
       left, right = self.getNeighbors(play, board)
       situation = [chosen, board, left, right]
       if board.attackable(situation):

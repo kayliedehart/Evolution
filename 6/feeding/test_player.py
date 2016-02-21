@@ -51,11 +51,11 @@ class TestPlayer(unittest.TestCase):
 
   def testSimpleCarnivore(self):
     self.player.setSpeciesBoards([self.carnivore])
-    self.assertEqual(self.player.feed(self.opponents), (self.carnivore, self.opherb))
+    self.assertEqual(self.player.feed(self.opponents), (self.carnivore, self.opponent1, self.opherb))
 
   def testSimpleFatTissue(self):
     self.player.setSpeciesBoards([self.fat_tissue, self.fat_tissue2])
-    self.assertEqual(self.player.feed(self.opponents), (self.fat_tissue, 4))
+    self.assertEqual(self.player.feed(self.opponents), (self.fat_tissue2, 4))
 
   def testSimpleEmpty(self):
     self.assertEqual(self.player.feed(self.opponents), False)
@@ -73,14 +73,16 @@ class TestPlayer(unittest.TestCase):
 
   def testSequencingConstraintOneHungry(self):
     self.player.setSpeciesBoards([self.herbavore])
-    with self.assertRaises(Exception("Violation of Sequencing Constraints")):
+    with self.assertRaises(Exception) as context:
       self.player.feed(self.opponents)
+      self.assertTrue('Violation of Sequencing Constraints' in context.exception)
 
   def testSequencingConstraintNotEnoughFood(self):
     self.dealer.setWateringHole(0)
     self.player.setSpeciesBoards([self.herbavore])
-    with self.assertRaises(Exception("Violation of Sequencing Constraints")):
+    with self.assertRaises(Exception) as context:
       self.player.feed(self.opponents)
+      self.assertTrue('Violation of Sequencing Constraints' in context.exception)
 
   def testTwoEqualSizedHerb(self):
     self.player.setSpeciesBoards([self.herbavore, self.herbavore2])
