@@ -48,11 +48,11 @@ class Strategy:
       corresponding to the trait that species posesses.
     """
     if fat_species:
-      return (fat_species[0], Trait.fat_tissue)
+      return (fat_species[0], trait.Trait.fat_tissue)
     elif herbivores:
       return (herbivores[0], False)
     elif carnivores:
-      return (carnivores[0], Trait.carnivore)
+      return (carnivores[0], trait.Trait.carnivore)
     else:
       raise Exception("Violation of Sequencing Constraints")
 
