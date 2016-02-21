@@ -12,7 +12,7 @@ class TestMakeJSON(unittest.TestCase):
 	def setUp(self):
 		self.make_json = make_json.MakeJSON()
 		self.false = json.dumps(False)
-		self.false = json.dumps(True)
+		self.true = json.dumps(True)
 		self.spec1 = species.Species(0,1,1,["carnivore"])
 		self.spec2 = species.Species(1,3,3,["herding"])
 		self.spec3 = species.Species(1,2,4,["carnivore", "ambush"])
