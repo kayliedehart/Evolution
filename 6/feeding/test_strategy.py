@@ -60,11 +60,11 @@ class TestStrategy(unittest.TestCase):
 
   def testHerbBeforeCarni(self):
     self.player.setSpeciesBoards([self.herbavore, self.carnivore])
-    self.assertEqual(self.player.feed(self.opponents), self.herbavore)
+    self.assertEqual(self.player.feed(self.opponents), (self.herbavore))
 
   def testLargestHerbFirst(self):
     self.player.setSpeciesBoards([self.herbavore, self.fat_herbavore])
-    self.assertEqual(self.player.feed(self.opponents), self.fat_herbavore)
+    self.assertEqual(self.player.feed(self.opponents), (self.fat_herbavore))
 
   def testLargestCarnivoreFirstIfAllHerbFed(self):
     self.herbavore.setFood(1)
