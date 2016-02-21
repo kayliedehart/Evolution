@@ -9,6 +9,9 @@ import json
 
 class MakeJSON:
 
+	def __init__(self):
+		pass
+
 	def make_speciesPlus(self, species):
 		"""
 		Construct a string in the format of a JSON Species+
@@ -51,7 +54,7 @@ class MakeJSON:
 			meal = "["
 			for item in feeding_out:
 				if type(item) == species.Species:
-					meal + self.make_speciesPlus(item))
+					meal + self.make_speciesPlus(item)
 				elif type(item) == int:
 					meal + "," + str(int)
 				elif type(item) == player.Player:

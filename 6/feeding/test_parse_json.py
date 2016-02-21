@@ -6,11 +6,12 @@ import player
 import dealer
 import json
 import unittest
-import parse_json.ParseJSON() as parse_json
+import parse_json
 
 class TestParseJSON(unittest.TestCase):
 
 	def setUp(self):
+		self.parse_json = parse_json.ParseJSON()
 		self.false = json.dumps(False)
 		self.spec1 = species.Species(0,1,1,["carnivore"])
 		self.spec2 = species.Species(1,3,3,["herding"])
@@ -405,76 +406,76 @@ class TestParseJSON(unittest.TestCase):
 
 	def test_parseSituation(self):
 		# If time, add more test cases
-		self.assertEqual(parse_json.parse_situation([self.json_spec1, self.json_spec2, self.false, self.false]),[self.spec1, self.spec2, False, False])
-		self.assertEqual(parse_json.parse_situation([self.json_spec3, self.json_spec15, self.json_spec4, self.json_spec22]),[self.spec3, self.spec15, self.spec4, self.spec22])
+		self.assertEqual(self.parse_json.parse_situation([self.json_spec1, self.json_spec2, self.false, self.false]),[self.spec1, self.spec2, False, False])
+		self.assertEqual(self.parse_json.parse_situation([self.json_spec3, self.json_spec15, self.json_spec4, self.json_spec22]),[self.spec3, self.spec15, self.spec4, self.spec22])
 
 	def test_parseTraits(self):
-		self.assertEqual(parse_json.parse_traits([]), [])
-		self.assertEqual(parse_json.parse_traits(["carnivore"]), [trait.Trait.carnivore])
-		self.assertEqual(parse_json.parse_traits(["carnivore", "fat-tissue"]), [trait.Trait.carnivore, trait.Trait.fat_tissue])
+		self.assertEqual(self.parse_json.parse_traits([]), [])
+		self.assertEqual(self.parse_json.parse_traits(["carnivore"]), [trait.Trait.carnivore])
+		self.assertEqual(self.parse_json.parse_traits(["carnivore", "fat-tissue"]), [trait.Trait.carnivore, trait.Trait.fat_tissue])
 		
 	def test_parseLoSpecies(self):
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec1]),[self.spec1])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec2, self.json_spec3]),[self.spec2, self.spec3])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec4]),[self.spec4])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec1]),[self.spec1])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec2, self.json_spec3]),[self.spec2, self.spec3])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec4]),[self.spec4])
 
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec5]),[self.spec5])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec6, self.json_spec7]),[self.spec6, self.spec7])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec8]),[self.spec8])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec5]),[self.spec5])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec6, self.json_spec7]),[self.spec6, self.spec7])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec8]),[self.spec8])
 
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec9]),[self.spec9])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec10, self.json_spec11]),[self.spec10, self.spec11])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec12]),[self.spec12])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec9]),[self.spec9])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec10, self.json_spec11]),[self.spec10, self.spec11])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec12]),[self.spec12])
 
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec13]),[self.spec13])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec14, self.json_spec15]),[self.spec14, self.spec15])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec16]),[self.spec16])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec13]),[self.spec13])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec14, self.json_spec15]),[self.spec14, self.spec15])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec16]),[self.spec16])
 
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec17]),[self.spec17])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec18, self.json_spec19]),[self.spec18, self.spec19])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec20]),[self.spec20])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec21]),[self.spec21])
-		self.assertEqual(parse_json.parse_loSpecies([self.json_spec22]),[self.spec22])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec17]),[self.spec17])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec18, self.json_spec19]),[self.spec18, self.spec19])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec20]),[self.spec20])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec21]),[self.spec21])
+		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec22]),[self.spec22])
 	
 	def test_parsePlayer(self):
-		self.assertEqual(parse_json.parse_player(self.json_player1),self.player1)
-		self.assertEqual(parse_json.parse_player(self.json_player2),self.player2)
-		self.assertEqual(parse_json.parse_player(self.json_player3),self.player3)
+		self.assertEqual(self.parse_json.parse_player(self.json_player1),self.player1)
+		self.assertEqual(self.parse_json.parse_player(self.json_player2),self.player2)
+		self.assertEqual(self.parse_json.parse_player(self.json_player3),self.player3)
 
-		self.assertEqual(parse_json.parse_player(self.json_player4),self.player4)
-		self.assertEqual(parse_json.parse_player(self.json_player5),self.player5)
-		self.assertEqual(parse_json.parse_player(self.json_player6),self.player6)
+		self.assertEqual(self.parse_json.parse_player(self.json_player4),self.player4)
+		self.assertEqual(self.parse_json.parse_player(self.json_player5),self.player5)
+		self.assertEqual(self.parse_json.parse_player(self.json_player6),self.player6)
 
-		self.assertEqual(parse_json.parse_player(self.json_player7),self.player7)
-		self.assertEqual(parse_json.parse_player(self.json_player8),self.player8)
-		self.assertEqual(parse_json.parse_player(self.json_player9),self.player9)
+		self.assertEqual(self.parse_json.parse_player(self.json_player7),self.player7)
+		self.assertEqual(self.parse_json.parse_player(self.json_player8),self.player8)
+		self.assertEqual(self.parse_json.parse_player(self.json_player9),self.player9)
 
-		self.assertEqual(parse_json.parse_player(self.json_player10),self.player10)
-		self.assertEqual(parse_json.parse_player(self.json_player11),self.player11)
-		self.assertEqual(parse_json.parse_player(self.json_player12),self.player12)
+		self.assertEqual(self.parse_json.parse_player(self.json_player10),self.player10)
+		self.assertEqual(self.parse_json.parse_player(self.json_player11),self.player11)
+		self.assertEqual(self.parse_json.parse_player(self.json_player12),self.player12)
 
-		self.assertEqual(parse_json.parse_player(self.json_player13),self.player13)
-		self.assertEqual(parse_json.parse_player(self.json_player14),self.player14)
-		self.assertEqual(parse_json.parse_player(self.json_player15),self.player15)
+		self.assertEqual(self.parse_json.parse_player(self.json_player13),self.player13)
+		self.assertEqual(self.parse_json.parse_player(self.json_player14),self.player14)
+		self.assertEqual(self.parse_json.parse_player(self.json_player15),self.player15)
 
-		self.assertEqual(parse_json.parse_player(self.json_player16),self.player16)
+		self.assertEqual(self.parse_json.parse_player(self.json_player16),self.player16)
 
 		
 		
 	def test_parseFeeding(self):
 		# if time, add more test cases, particularly exceptions
-		self.assertEqual(parse_json.parse_feeding([self.json_player1, 10, [self.json_player2, self.json_player3]]),
+		self.assertEqual(self.parse_json.parse_feeding([self.json_player1, 10, [self.json_player2, self.json_player3]]),
 												[self.player1, 10, [self.player2, self.player3]])
-		self.assertEqual(parse_json.parse_feeding([self.json_player4, 10, [self.json_player5, self.json_player6]]),
+		self.assertEqual(self.parse_json.parse_feeding([self.json_player4, 10, [self.json_player5, self.json_player6]]),
 												[self.player4, 10, [self.player5, self.player6]])
-		self.assertEqual(parse_json.parse_feeding([self.json_player7, 10, [self.json_player8, self.json_player9]]),
+		self.assertEqual(self.parse_json.parse_feeding([self.json_player7, 10, [self.json_player8, self.json_player9]]),
 												[self.player7, 10, [self.player8, self.player9]])
-		self.assertEqual(parse_json.parse_feeding([self.json_player10, 10, [self.json_player11, self.json_player12]]),
+		self.assertEqual(self.parse_json.parse_feeding([self.json_player10, 10, [self.json_player11, self.json_player12]]),
 												[self.player10, 10, [self.player11, self.player12]])
-		self.assertEqual(parse_json.parse_feeding([self.json_player13, 10, [self.json_player14, self.json_player15]]),
+		self.assertEqual(self.parse_json.parse_feeding([self.json_player13, 10, [self.json_player14, self.json_player15]]),
 												[self.player13, 10, [self.player14, self.player15]])
 		# with assertRaises Exception as context:
-		# self.assertEqual(parse_json.parse_feeding([self.json_player13, 10, [self.json_player14, self.json_player15]]),
+		# self.assertEqual(self.parse_json.parse_feeding([self.json_player13, 10, [self.json_player14, self.json_player15]]),
 		# 										[self.player13, 10, [self.player14, self.player15]])
 
 		

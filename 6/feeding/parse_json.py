@@ -9,6 +9,9 @@ import json
 
 class ParseJSON:
 
+	def __init__(self):
+		pass
+
 	def parse_situation(self, situation):
 		"""
 		Reconstruct the JSON input of a situation into a list of
