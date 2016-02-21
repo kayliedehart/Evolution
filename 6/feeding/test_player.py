@@ -1,46 +1,48 @@
 import unittest
-import ../../5/attack/dealer
-import ../../5/attack/species
-import ../../5/attack/trait
+import dealer
+import species
+import trait
+import strategy
+import player
 
-class TestPlayer(unnittest.TestCase):
+class TestPlayer(unittest.TestCase):
   def setUp(self):
-    self.player = player.Player()
+    self.player = player.Player(1, [], 0)
 
-    self.carnivore = species.Species()
-    self.carnivore.setTraits([trait.carnivore])
+    self.carnivore = species.Species(0, 1, 1, [])
+    self.carnivore.setTraits([trait.Trait.carnivore])
 
-    self.herbavore = species.Species()
-    self.herbavore2 = species.Species()
+    self.herbavore = species.Species(0, 1, 1, [])
+    self.herbavore2 = species.Species(0, 1, 1, [])
 
-    self.fat_tissue = species.Species()
-    self.fat_tissue.setBodySize(3)
-    self.fat_tissue.setTraits([trait.fat_tissue])
-    self.fat_tissue2 = species.Species()
+    self.fat_tissue = species.Species(0, 1, 1, [])
+    self.fat_tissue.setTraits([trait.Trait.fat_tissue])
+    self.fat_tissue2 = species.Species(0, 1, 1, [])
     self.fat_tissue2.setBodySize(3)
-    self.fat_tissue2.setTraits([trait.fat_tissue])
+    self.fat_tissue2.setTraits([trait.Trait.fat_tissue])
 
-    self.opherb = species.Species()
-    self.opfatherb = species.Species()
+    self.opherb = species.Species(0, 1, 1, [])
+    self.opfatherb = species.Species(0, 1, 1, [])
     self.opfatherb.setBodySize(7)
-    self.opponent1 = player.Player()
-    self.opponent1.setSpeciesBoards([opherb, opfatherb])
-    self.opponents = [opponent1]
+
+    self.opponent1 = player.Player(1, [], 0)
+    self.opponent1.setSpeciesBoards([self.opherb, self.opfatherb])
+    self.opponents = [self.opponent1]
 
     self.dealer = dealer.Dealer()
     self.dealer.setListOfPlayers([self.player, self.opponent1])
     self.dealer.setWateringHole(4)
 
   def tearDown(self):
-    self.player
-    self.carnivore
-    self.herbavore
-    self.fat_tissue
-    self.opherb
-    self.opfatherb
-    self.opponent1
-    self.opponents
-    self.dealer
+    del self.player
+    del self.carnivore
+    del self.herbavore
+    del self.fat_tissue
+    del self.opherb
+    del self.opfatherb
+    del self.opponent1
+    del self.opponents
+    del self.dealer
 
   # Feed Tests
   def testSimpleHerbavore(self):
@@ -49,7 +51,7 @@ class TestPlayer(unnittest.TestCase):
 
   def testSimpleCarnivore(self):
     self.player.setSpeciesBoards([self.carnivore])
-    self.assertEqual(self.player.feed(self.opponents), (self.carnivore, self.opherb)
+    self.assertEqual(self.player.feed(self.opponents), (self.carnivore, self.opherb))
 
   def testSimpleFatTissue(self):
     self.player.setSpeciesBoards([self.fat_tissue, self.fat_tissue2])

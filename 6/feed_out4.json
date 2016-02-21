@@ -1,14 +1,8 @@
-[[["food",Nat],
-     ["body",Nat],
-     ["population",Nat],
-     ["traits",LOT]],
-     
-     [["id",Natural+],
-     ["species",LOS],
-     ["bag",Natural]],
-
-     [["food",Nat],
-     ["body",Nat],
-     ["population",Nat],
-     ["traits",LOT]]
+[[["food",0],
+  ["body",5],
+  ["population",1],
+  ["traits",
+  	["fat-tissue"]],
+  ["fat-food", 5]],
+  5
 ]

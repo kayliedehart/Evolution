@@ -4,33 +4,13 @@
 from attack import dealer
 from attack import trait
 from attack import species
+from cs4500-aalder-kdehart import parse_json.ParseJSON as parse_json
 import sys
-import json
 
 
 class TestHarness:
 	def __init__(self):
 		self.main()
-
-	def parse_situation(self, situation):
-		"""
-		Reconstruct the JSON input of a situation into a list of
-		[attacking:Species, defending:Species, (neighbor:Species), (neighbor:Species)]
-		and return that list.
-		"""
-		species_list = []
-		for speciesboard in situation:
-			if speciesboard:
-				s = species.Species()
-				s.setFood(speciesboard[0][1])
-				s.setBodySize(speciesboard[1][1])
-				s.setPopulation(speciesboard[2][1])
-				for t in speciesboard[3][1]:
-					s.setTraits([trait.Trait(t)])
-				species_list.append(s)
-			else:
-				species_list.append(False)
-		return species_list
 
 	def main(self):
 		"""
@@ -44,7 +24,7 @@ class TestHarness:
 		test_species = species.Species()
 
 		result = test_species.attackable(species_list)
-		
+
 		print result		
 
 if __name__ == "__main__":

@@ -4,12 +4,12 @@ import trait
 
 class testAttackable(unittest.TestCase):
   def setUp(self):
-    self.species = species.Species()
-    self.attacker = species.Species()
+    self.species = species.Species(0, 1, 1, [])
+    self.attacker = species.Species(0, 1, 1, [])
     self.attacker.setTraits([trait.Trait.carnivore])
-    self.defender = species.Species()
-    self.neighborleft = species.Species()
-    self.neighborright = species.Species()
+    self.defender = species.Species(0, 1, 1, [])
+    self.neighborleft = species.Species(0, 1, 1, [])
+    self.neighborright = species.Species(0, 1, 1, [])
 
   def tearDown(self):
     del self.species

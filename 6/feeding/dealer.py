@@ -23,7 +23,7 @@ class Dealer:
 	def getListOfPlayers(self):
 		return self.listOfPlayers
 
-	def setDeck(deck):
+	def setDeck(self, deck):
 		self.deck = deck
 
 	def getDeck(self):
