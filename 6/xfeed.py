@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # a test harness for the feed method in Player for a game of Evolution
 
-from 5/attack import trait
-from 5/attack import species
 from feeding import player
-from cs4500-aalder-kdehart import parse_json.ParseJSON as parse_json
-from cs4500-aalder-kdehart import make_json.MakeJSON as make_json
+from feeding import parse_json
+from feeding import make_json
 import sys
 
 
@@ -18,6 +16,9 @@ class TestHarness:
 		Get input from stdin, parse, and get Player's response, parse, and return to stdout
 		"""
 		situation = json.load(sys.argv[1])
+
+		parse_json = parse_json.ParseJSON()
+		make_json = make_json.MakeJSON()
 
 		feeding = parse_json.parse_feeding(feeding)
 

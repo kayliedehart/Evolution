@@ -47,7 +47,7 @@ class MakeJSON:
 			[Species+, Player, Species+]
 		"""
 		if not feeding_out:
-			return json.dump(False)
+			return json.dumps(False)
 		if len(feeding_out) == 1:
 			return json.dumps(self.make_speciesPlus(feeding_out))
 		else:
