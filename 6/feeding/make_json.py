@@ -12,17 +12,24 @@ class MakeJSON:
 	def __init__(self):
 		pass
 
-	def make_speciesPlus(self, species):
+	def parseTraits(self, str_traits):
+		"""
+		Corrects the quotes so that the object returns correctly
+		"""
+		new_str =  str_traits.replace("'", '"')
+		return new_str
+
+	def make_speciesPlus(self, speciesPlus):
 		"""
 		Construct a string in the format of a JSON Species+
 		"""
-		str_species = ('[["food",{}],["body",{}],["population",{}],["traits",[{}]]'.format(
-																							 species.getFood(),
-																						   species.getBodySize(),
-																						   species.getPopulation(),
-																						   species.getTraits()))
-		if "fat-tissue" in species.getTraits():
-			str_species + "['fat-food',{}]]".format((species.getFatFood()))
+		str_species = ('[["food",{}],["body",{}],["population",{}],'.format(
+																							 speciesPlus.getFood(),
+																						   speciesPlus.getPopulation(),
+																						   speciesPlus.getBodySize()))
+		str_species = str_species + '["traits",' + self.parseTraits('{}]]'.format(speciesPlus.getTraits()))
+		if speciesPlus.hasFatTissue():
+			str_species + '["fat-food",{}]]'.format(speciesPlus.getFatFood())
 		else:
 			str_species + "]"
 		return str_species
@@ -31,10 +38,17 @@ class MakeJSON:
 		"""
 		Construct a string in the format of a JSON Player
 		"""
-		str_player = "[['id',{}],".format(player.getPlayerId())
-		for species in player.getSpeciesBoards():
-			str_player + self.make_speciesPlus(species)
-		str_player + "['bag',{}]]".format(player.getFoodBag())
+		str_player = '[["id",{}],["species",['.format(player.getPlayerId())
+
+		sb = player.getSpeciesBoards()
+
+		for s in sb:
+			str_player = str_player + self.make_speciesPlus(s)
+			if(sb.index(s) != len(sb)-1):
+				str_player = str_player + ','
+
+		str_player = str_player + ']],["bag",{}]]'.format(player.getFoodBag())
+
 		return str_player
 
 	def make_meal(self, feeding_out):
@@ -55,13 +69,13 @@ class MakeJSON:
 		else:
 			meal = "["
 			for item in feeding_out:
-				if type(item) == species.Species:
-					meal + self.make_speciesPlus(item)
-				elif type(item) == int:
-					meal + "," + str(int)
-				elif type(item) == player.Player:
-					meal + "," + (self.make_player(item)) + ","
-			meal + "]"
+				if isinstance(item, species.Species):
+					meal = meal + self.make_speciesPlus(item)
+				elif isinstance(item, int):
+					meal = meal + "," + str(item)
+				elif isinstance(item, player.Player):
+					meal = meal + "," + (self.make_player(item)) + ","
+			meal = meal + "]"
 		# return json.dump(meal, sys.stdout)
 		return json.dumps(meal)
 
