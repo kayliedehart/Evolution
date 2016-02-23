@@ -151,8 +151,8 @@ class TestParseJSON(unittest.TestCase):
 		self.json_spec19 = [["food",0],
 						   ["body",3],
 						   ["population",2],
-						   ["traits", 
-						   	["carnivore", "fat-tissue"]]
+						   ["traits",
+						   	["carnivore", "fat-tissue"]],
 						   ["fat-food", 5]]
 		self.json_spec20 = [["food",3],
 						  ["body",3],
@@ -291,8 +291,8 @@ class TestParseJSON(unittest.TestCase):
 							     [[["food",0],
 								   ["body",3],
 								   ["population",2],
-								   ["traits", 
-								   	["carnivore", "fat-tissue"]]
+								   ["traits",
+								   	["carnivore", "fat-tissue"]],
 								   ["fat-food", 5]]]],
 							  ["bag",0]]
 		self.json_player14 = [["id",2],
@@ -402,7 +402,7 @@ class TestParseJSON(unittest.TestCase):
 		del self.json_player15
 		del self.json_player16
 
-	
+
 
 	def test_parseSituation(self):
 		# If time, add more test cases
@@ -413,7 +413,7 @@ class TestParseJSON(unittest.TestCase):
 		self.assertEqual(self.parse_json.parse_traits([]), [])
 		self.assertEqual(self.parse_json.parse_traits(["carnivore"]), [trait.Trait.carnivore])
 		self.assertEqual(self.parse_json.parse_traits(["carnivore", "fat-tissue"]), [trait.Trait.carnivore, trait.Trait.fat_tissue])
-		
+
 	def test_parseLoSpecies(self):
 		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec1]),[self.spec1])
 		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec2, self.json_spec3]),[self.spec2, self.spec3])
@@ -436,7 +436,7 @@ class TestParseJSON(unittest.TestCase):
 		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec20]),[self.spec20])
 		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec21]),[self.spec21])
 		self.assertEqual(self.parse_json.parse_loSpecies([self.json_spec22]),[self.spec22])
-	
+
 	def test_parsePlayer(self):
 		self.assertEqual(self.parse_json.parse_player(self.json_player1),self.player1)
 		self.assertEqual(self.parse_json.parse_player(self.json_player2),self.player2)
@@ -460,25 +460,33 @@ class TestParseJSON(unittest.TestCase):
 
 		self.assertEqual(self.parse_json.parse_player(self.json_player16),self.player16)
 
-		
-		
+
+
 	def test_parseFeeding(self):
 		# if time, add more test cases, particularly exceptions
-		self.assertEqual(self.parse_json.parse_feeding([self.json_player1, 10, [self.json_player2, self.json_player3]]),
-												[self.player1, 10, [self.player2, self.player3]])
+		feeding = [self.json_player1, 10, [self.json_player2, self.json_player3]]
+		self.assertEqual(self.parse_json.parse_feeding(feeding), [self.player1, 10, [self.player2, self.player3]])
+
+	def test_parseFeeding1(self):
 		self.assertEqual(self.parse_json.parse_feeding([self.json_player4, 10, [self.json_player5, self.json_player6]]),
 												[self.player4, 10, [self.player5, self.player6]])
+
+	def test_parseFeeding2(self):
 		self.assertEqual(self.parse_json.parse_feeding([self.json_player7, 10, [self.json_player8, self.json_player9]]),
 												[self.player7, 10, [self.player8, self.player9]])
+
+	def test_parseFeeding3(self):
 		self.assertEqual(self.parse_json.parse_feeding([self.json_player10, 10, [self.json_player11, self.json_player12]]),
 												[self.player10, 10, [self.player11, self.player12]])
+
+	def test_parseFeeding4(self):
 		self.assertEqual(self.parse_json.parse_feeding([self.json_player13, 10, [self.json_player14, self.json_player15]]),
 												[self.player13, 10, [self.player14, self.player15]])
 		# with assertRaises Exception as context:
 		# self.assertEqual(self.parse_json.parse_feeding([self.json_player13, 10, [self.json_player14, self.json_player15]]),
 		# 										[self.player13, 10, [self.player14, self.player15]])
 
-		
+
 
 
 if __name__ == '__main__':

@@ -25,8 +25,9 @@ class testAttackable(unittest.TestCase):
 
   def testAttackableBothEmpty(self):
     self.attacker.discardTrait(0)
-    with self.assertRaises(Exception("Attacking Species must be a carnivore")):
+    with self.assertRaises(Exception) as context:
       self.species.attackable([self.attacker, self.defender, False, False])
+      self.AssertTrue('Attacking Species must be a carnivore')
 
   def testAttackableCarnivoreBasic(self):
     self.assertEqual(self.species.attackable([self.attacker, self.defender, False, False]), True)
@@ -48,6 +49,7 @@ class testAttackable(unittest.TestCase):
 
   def testBadSymbiosis(self):
     self.defender.setTraits([trait.Trait.symbiosis])
+    self.attacker.setBodySize(4)
     self.defender.setBodySize(2)
     self.neighborright.setBodySize(1)
     self.neighborleft.setBodySize(4)
@@ -66,7 +68,7 @@ class testAttackable(unittest.TestCase):
     self.attacker.setTraits([trait.Trait.pack_hunting])
     self.defender.setTraits([trait.Trait.herding])
     self.attacker.setPopulation(3)
-    self.defender.setPopulation(5)
+    self.defender.setPopulation(1)
     self.assertEqual(self.species.attackable([self.attacker, self.defender, False, False]), True)
 
   def testFailPackHunting(self):
@@ -101,8 +103,10 @@ class testAttackable(unittest.TestCase):
     self.assertEqual(self.species.attackable([self.attacker, self.defender, False, False]), True)
 
   def testAttackerAttacksSelf(self):
-    with self.assertRaises(Exception("A species cannot attack itself")):
+    with self.assertRaises(Exception) as context:
       self.species.attackable([self.attacker, self.attacker, False, False])
+      self.AssertTrue('A species cannot attack itself')
+
 
 if __name__ == '__main__':
     unittest.main()
