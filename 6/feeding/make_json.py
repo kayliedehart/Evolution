@@ -1,5 +1,5 @@
 # Create JSON representations of Evolution python objects
-
+import sys
 import trait
 import species
 import player
@@ -16,7 +16,8 @@ class MakeJSON:
 		"""
 		Construct a string in the format of a JSON Species+
 		"""
-		str_species = ('[["food",{}],["body",{}],["population",{}],["traits",[{}]]'.format(species.getFood(),
+		str_species = ('[["food",{}],["body",{}],["population",{}],["traits",[{}]]'.format(
+																							 species.getFood(),
 																						   species.getBodySize(),
 																						   species.getPopulation(),
 																						   species.getTraits()))
@@ -33,7 +34,7 @@ class MakeJSON:
 		"""
 		str_player = "[['id',{}],".format(player.getPlayerId())
 		for species in player.getSpeciesBoards():
-			str_player + self.make_speciesPlus
+			str_player + self.make_speciesPlus(species)
 		str_player + "['bag',{}]]".format(player.getFoodBag())
 		return str_player
 
@@ -47,9 +48,11 @@ class MakeJSON:
 			[Species+, Player, Species+]
 		"""
 		if not feeding_out:
-			return json.dump(False)
+			return json.dumps(False)
+			# return json.dump(False, sys.stdout)
 		if len(feeding_out) == 1:
-			return json.dump(self.make_speciesPlus(feeding_out))
+			return json.dumps(self.make_speciesPlus(feeding_out[0]))
+			# return json.dump(self.make_speciesPlus(feeding_out[0]), sys.stdout)
 		else:
 			meal = "["
 			for item in feeding_out:
@@ -60,10 +63,13 @@ class MakeJSON:
 				elif type(item) == player.Player:
 					meal + "," + (self.make_player(item)) + ","
 			meal + "]"
-		return json.dump(meal)
+		# return json.dump(meal, sys.stdout)
+		return json.dumps(meal)
 
 	def make_attack(self, attack):
 		"""
 		Construct a JSON message to describe the result of an species' attack scenario (Boolean)
 		"""
-		return json.dump(attack)
+
+		return json.dumps(attack)
+		# return json.dump(attack, sys.stdout)
