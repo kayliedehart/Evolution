@@ -18,7 +18,7 @@ class TestHarness:
 		For a given Situation (a JSON of [attacking:Species, defending:Species, (neighbor:Species), (neighbor:Species)], 
 			return a Boolean to stdout whether or not the attack is successful.
 		"""
-		situation = json.load(sys.argv[1])
+		situation = json.load(sys.stdin)
 
 		species_list = self.parse_situation(situation)
 
@@ -26,7 +26,7 @@ class TestHarness:
 
 		result = test_species.attackable(species_list)
 
-		print make_json.make_attack(result)
+		make_json.make_attack(result)
 
 if __name__ == "__main__":
 	TestHarness()

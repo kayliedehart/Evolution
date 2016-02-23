@@ -53,24 +53,23 @@ class ParseJSON:
 		for speciesboard in LOS:
 			# TODO CONTRACT CHECKING
 			this_species = species.Species(speciesboard[0][1], speciesboard[1][1], speciesboard[2][1], self.parse_traits(speciesboard[3][1]))
-			if (trait.Trait.fat_tissue in this_species.getTraits()) and speciesboard[4]:
+			if (trait.Trait.fat_tissue in this_species.getTraits()) and speciesboard[4][1]:
 				this_species.setFood(species[4][1])
-			species_list.append(this_species)
-
+				species_list.append(this_species)
 		return species_list
 
 
 
-	def parse_player(self, player):
+	def parse_player(self, jplayer):
 		"""
 		make a Player from a JSON Player. A JSON Player is:
 				    [["id",Natural+],
      				["species",LOS],
      				["bag",Natural]]
 		"""
-		ident = player[0][1]
-		species = self.parse_loSpecies(player[1][1])
-		bag = player[2][1]
+		ident = jplayer[0][1]
+		species = self.parse_loSpecies(jplayer[1][1])
+		bag = jplayer[2][1]
 
 		if (ident > 1) and (bag >= 0):
 			return player.Player(ident, species, bag)
@@ -82,7 +81,7 @@ class ParseJSON:
 		Reconstruct the JSON input of a "feeding" into Python: Feeding is [Player, Natural+, LOP]
 
 		"""
-		current_player = self.parse_player[feeding[0]]
+		current_player = self.parse_player(feeding[0])
 		free_food = feeding[1]
 		all_players = []
 		for player in feeding[2]:

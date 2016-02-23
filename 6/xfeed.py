@@ -15,7 +15,7 @@ class TestHarness:
 		"""
 		Get input from stdin, parse, and get Player's response, parse, and return to stdout
 		"""
-		situation = json.load(sys.argv[1])
+		situation = json.load(sys.stdin)
 
 		parse_json = parse_json.ParseJSON()
 		make_json = make_json.MakeJSON()
@@ -26,7 +26,7 @@ class TestHarness:
 
 		result = test_player.feed(players_list)
 
-		print make_json.make_meal(result)	
+		make_json.make_meal(result)
 
 if __name__ == "__main__":
 	TestHarness()
