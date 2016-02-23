@@ -22,8 +22,7 @@ class MakeJSON:
 																						   species.getPopulation(),
 																						   species.getTraits()))
 		if "fat-tissue" in species.getTraits():
-			###### FUCKING SHIT DO WE NEED TO KEEP TRACK OF THIS IN RETURNS?
-			str_species + "['fat-food',{}]]".format((0))
+			str_species + "['fat-food',{}]]".format((species.getFatFood()))
 		else:
 			str_species + "]"
 		return str_species

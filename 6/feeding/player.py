@@ -104,4 +104,4 @@ class Player:
         play, board = victim
         return (chosen, play, board)
     else:
-      return (chosen, ((chosen.getPopulation() + chosen.getBodySize()) - (chosen.getFood() + chosen.getFatFood()))
+      return (chosen, ((chosen.getPopulation() + chosen.getBodySize()) - (chosen.getFood() + chosen.getFatFood())))
