@@ -65,7 +65,7 @@ class TestMakeJSON(unittest.TestCase):
 		self.player16 = player.Player(1, [], 0)
 
 
-		self.json_spec1 = '[[["food",0],["body",1],["population",1],["traits",["carnivore"]]]]'
+		self.json_spec1 = '[["food",0],["body",1],["population",1],["traits",["carnivore"]]]'
 		self.json_spec2 = '[["food",1],["body",3],["population",3],["traits",["herding"]]]'
 		self.json_spec3 = '[["food",1],["body",2],["population",4],["traits",["carnivore", "ambush"]]]'
 		self.json_spec4 = '[["food",0],["body",3],["population",2],["traits",[]]]'
@@ -188,36 +188,78 @@ class TestMakeJSON(unittest.TestCase):
 		del self.json_player14
 		del self.json_player15
 		del self.json_player16
-	
 
-	def test_make_speciesPlus(self):
+
+	def test_make_speciesPlus1(self):
 		"""Returns a string representing a JSON SpeciesPlus
 		"""
 		self.assertEqual(self.make_json.make_speciesPlus(self.spec1),self.json_spec1)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec2),self.json_spec2)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec3),self.json_spec3)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec4),self.json_spec4)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec5),self.json_spec5)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec6),self.json_spec6)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec7),self.json_spec7)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec8),self.json_spec8)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec9),self.json_spec9)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec10),self.json_spec10)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec11),self.json_spec11)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec12),self.json_spec12)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec13),self.json_spec13)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec14),self.json_spec14)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec15),self.json_spec15)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec16),self.json_spec16)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec17),self.json_spec17)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec18),self.json_spec18)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec19),self.json_spec19)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec20),self.json_spec20)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec21),self.json_spec21)
-		self.assertEqual(self.make_json.make_speciesPlus(self.spec22),self.json_spec22)
-	
 
-	def test_make_player(self):
+	def test_make_speciesPlus2(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec2),self.json_spec2)
+
+	def test_make_speciesPlus3(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec3),self.json_spec3)
+
+	def test_make_speciesPlus4(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec4),self.json_spec4)
+
+	def test_make_speciesPlus4(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec5),self.json_spec5)
+
+	def test_make_speciesPlus5(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec6),self.json_spec6)
+
+	def test_make_speciesPlus6(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec7),self.json_spec7)
+
+	def test_make_speciesPlus7(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec8),self.json_spec8)
+
+	def test_make_speciesPlus8(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec9),self.json_spec9)
+
+	def test_make_speciesPlus9(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec10),self.json_spec10)
+
+	def test_make_speciesPlus10(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec11),self.json_spec11)
+
+	def test_make_speciesPlus11(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec12),self.json_spec12)
+
+	def test_make_speciesPlus12(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec13),self.json_spec13)
+
+	def test_make_speciesPlus13(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec14),self.json_spec14)
+
+	def test_make_speciesPlus14(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec15),self.json_spec15)
+
+	def test_make_speciesPlus15(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec16),self.json_spec16)
+
+	def test_make_speciesPlus16(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec17),self.json_spec17)
+
+	def test_make_speciesPlus17(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec18),self.json_spec18)
+
+	def test_make_speciesPlus18(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec19),self.json_spec19)
+
+	def test_make_speciesPlus19(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec20),self.json_spec20)
+
+	def test_make_speciesPlus20(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec21),self.json_spec21)
+
+	def test_make_speciesPlus21(self):
+		self.assertEqual(self.make_json.make_speciesPlus(self.spec22),self.json_spec22)
+
+
+	def test_make_player1(self):
 		"""Returns a string representing a JSON Player
 		"""
 		self.assertEqual(self.make_json.make_player(self.player1), self.json_player1)
@@ -236,21 +278,28 @@ class TestMakeJSON(unittest.TestCase):
 		self.assertEqual(self.make_json.make_player(self.player14), self.json_player14)
 		self.assertEqual(self.make_json.make_player(self.player15), self.json_player15)
 		self.assertEqual(self.make_json.make_player(self.player16), self.json_player16)
-		
-		
+
+
 	def test_make_meal(self):
 		self.assertEqual(self.make_json.make_meal(False), self.false)
-		self.assertEqual(self.make_json.make_meal(self.spec1), json.dumps(self.json_spec1))
-		self.assertEqual(self.make_json.make_meal(self.spec14), json.dumps(self.json_spec14))
+
+	def test_make_meal2(self):
+		self.assertEqual(self.make_json.make_meal([self.spec1]), json.dumps(self.json_spec1))
+
+	def test_make_meal3(self):
+		self.assertEqual(self.make_json.make_meal([self.spec14]), json.dumps(self.json_spec14))
+
+	def test_make_meal4(self):
 		self.assertEqual(self.make_json.make_meal([self.spec2, 2]), json.dumps("[" + self.json_spec1 + ",2]"))
 
+	def test_make_meal5(self):
 		self.assertEqual(self.make_json.make_meal([self.spec5, self.player5, self.spec7]), json.dumps("[" + self.json_spec5 + ",{},{}]".format(self.json_player5, self.json_spec7)))
-		
-	
+
+
 	def test_make_attack(self):
 		self.assertEqual(self.make_json.make_attack(False), self.false)
 		self.assertEqual(self.make_json.make_attack(True), self.true)
-		
+
 
 
 if __name__ == '__main__':

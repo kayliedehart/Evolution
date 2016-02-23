@@ -10,12 +10,14 @@ class Species:
 	population = 1
 	bodysize = 1
 	traits = []
+	fat_food = 0
 
-	def __init__(self, food, population, bodysize, traits):
+	def __init__(self, food, population, bodysize, traits, fatfood):
 		self.food = food
 		self.population = population
 		self.bodysize = bodysize
 		self.traits = traits
+		self.fat_food = fatfood
 
 	def getFood(self):
 		"""
@@ -41,6 +43,31 @@ class Species:
 			raise Exception("Cannot set food to a negative value")
 		else:
 			self.food = newFood
+
+	def getFatFood(self):
+		"""
+		Get the number of fat_food tokens of this species.
+		"""
+		return self.fat_food
+
+	def setFatFood(self, nat):
+		"""
+		Update the number of fat_food tokens for this species.
+		"""
+		if nat < 0:
+			raise Exception("Cannot set fat_food to a negative value")
+		else:
+			self.fat_food = nat
+
+	def addToFatFood(self, nat):
+		"""
+		Update the number of fat_food tokens for this species.
+		"""
+		newFood = self.fat_food + nat
+		if newFood < 0:
+			raise Exception("Cannot set fat_food to a negative value")
+		else:
+			self.fat_food = newFood
 
 	def getPopulation(self):
 		"""
