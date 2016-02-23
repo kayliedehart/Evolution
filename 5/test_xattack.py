@@ -20,7 +20,10 @@ class TestXAttack(unittest.TestCase):
   	for line in outfile.readline():
 
     with expected as f1, open(output_file) as f2:
-	    
+
+  def test_json(self):
+    self.assertFalse(xattack(open(attack_1.json)))
+    self.assertFalse(xattack(open(attack_2.json)))
 	        
     
 

@@ -21,10 +21,7 @@ class ParseJSON:
 		species_list = []
 		for speciesboard in situation:
 			if speciesboard:
-				s = species.Species()
-				s.setFood(speciesboard[0][1])
-				s.setBodySize(speciesboard[1][1])
-				s.setPopulation(speciesboard[2][1])
+				s = species.Species(speciesboard[0][1], speciesboard[1][1],speciesboard[2][1],[])
 				for t in speciesboard[3][1]:
 					s.setTraits([trait.Trait(t)])
 				species_list.append(s)
@@ -37,9 +34,9 @@ class ParseJSON:
 		Make a list of Traits from a given JSON list of traits
 		"""
 		trait_list = []
-		for trait in traits:
-			trait = trait.Trait(trait)
-			trait_list.append(trait)
+		for t in traits:
+			new_trait = trait.Trait(t)
+			trait_list.append(new_trait)
 		return trait_list
 
 
@@ -53,10 +50,10 @@ class ParseJSON:
 		     ["fat-food" ,Nat]]
 		"""
 		species_list = []
-		for species in LOS:
+		for speciesboard in LOS:
 			# TODO CONTRACT CHECKING
-			this_species = species.Species(species[0][1], species[1][1], species[2][1], self.parse_traits(species[3][1]))
-			if (trait.Trait.fat_tissue in this_species.getTraits()) and species[4]:
+			this_species = species.Species(speciesboard[0][1], speciesboard[1][1], speciesboard[2][1], self.parse_traits(speciesboard[3][1]))
+			if (trait.Trait.fat_tissue in this_species.getTraits()) and speciesboard[4]:
 				this_species.setFood(species[4][1])
 			species_list.append(this_species)
 
