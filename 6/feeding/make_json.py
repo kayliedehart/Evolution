@@ -27,11 +27,12 @@ class MakeJSON:
 																							 speciesPlus.getFood(),
 																						   speciesPlus.getPopulation(),
 																						   speciesPlus.getBodySize()))
-		str_species = str_species + '["traits",' + self.parseTraits('{}]]'.format(speciesPlus.getTraits()))
-		if speciesPlus.hasFatTissue():
-			str_species + '["fat-food",{}]]'.format(speciesPlus.getFatFood())
+		str_species = str_species + '["traits",' + self.parseTraits('{}]'.format(speciesPlus.getTraits()))
+
+		if 'fat-tissue' in speciesPlus.getTraits():
+			str_species = str_species + ',["fat-food",{}]]'.format(speciesPlus.getFatFood())
 		else:
-			str_species + "]"
+			str_species = str_species + "]"
 		return str_species
 
 	def make_player(self, player):
@@ -39,7 +40,6 @@ class MakeJSON:
 		Construct a string in the format of a JSON Player
 		"""
 		str_player = '[["id",{}],["species",['.format(player.getPlayerId())
-
 		sb = player.getSpeciesBoards()
 
 		for s in sb:

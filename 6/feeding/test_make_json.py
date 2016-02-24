@@ -41,6 +41,9 @@ class TestMakeJSON(unittest.TestCase):
 		self.spec21 = species.Species(0,5,4,[])
 		self.spec22 = species.Species(2,2,2,[])
 
+		self.spec14.setFatFood(5)
+		self.spec19.setFatFood(3)
+
 
 		self.player1 = player.Player(1, [self.spec1], 0)
 		self.player2 = player.Player(2, [self.spec2, self.spec3], 0)
@@ -54,15 +57,15 @@ class TestMakeJSON(unittest.TestCase):
 		self.player8 = player.Player(2, [self.spec10, self.spec11], 0)
 		self.player9 = player.Player(3, [self.spec12], 0)
 
-		self.player10 = player.Player(1, [self.spec13], 0)
-		self.player11 = player.Player(2, [self.spec14, self.spec15], 0)
-		self.player12 = player.Player(3, [self.spec16], 0)
+		self.player10 = player.Player(1, [self.spec14, self.spec15], 0)
+		self.player11 = player.Player(2, [self.spec16, self.spec13], 0)
+		self.player12 = player.Player(3, [self.spec17], 0)
 
-		self.player13 = player.Player(1, [self.spec17], 0)
-		self.player14 = player.Player(2, [self.spec18, self.spec19], 0)
-		self.player15 = player.Player(3, [self.spec20], 0)
+		self.player13 = player.Player(1, [self.spec19], 0)
+		self.player14 = player.Player(2, [self.spec20, self.spec21], 0)
+		self.player15 = player.Player(3, [self.spec22], 0)
 
-		self.player16 = player.Player(1, [], 0)
+		self.player16 = player.Player(3, [], 0)
 
 
 		self.json_spec1 = '[["food",0],["body",1],["population",1],["traits",["carnivore"]]]'
@@ -78,12 +81,12 @@ class TestMakeJSON(unittest.TestCase):
 		self.json_spec11 = '[["food",2],["body",2],["population",2],["traits",[]]]'
 		self.json_spec12 = '[["food",0],["body",1],["population",1],["traits",[]]]'
 		self.json_spec13 = '[["food",0],["body",1],["population",1],["traits",[]]]'
-		self.json_spec14 = '[["food",0],["body",5],["population",1],["traits",["fat-tissue"]],["fat-food", 6]]'
+		self.json_spec14 = '[["food",0],["body",5],["population",1],["traits",["fat-tissue"]],["fat-food",5]]'
 		self.json_spec15 = '[["food",0],["body",6],["population",1],["traits",["warning-call"]]]'
 		self.json_spec16 = '[["food",2],["body",2],["population",2],["traits",[]]]'
 		self.json_spec17 = '[["food",0],["body",1],["population",1],["traits",[]]]'
 		self.json_spec18 = '[["food",0],["body",1],["population",1],["traits",[]]]'
-		self.json_spec19 = '[["food",0],["body",3],["population",2],["traits",["carnivore", "fat-tissue"]]["fat-food", 5]]'
+		self.json_spec19 = '[["food",0],["body",3],["population",2],["traits",["carnivore", "fat-tissue"]],["fat-food",3]]'
 		self.json_spec20 = '[["food",3],["body",3],["population",6],["traits",[]]]'
 		self.json_spec21 = '[["food",0],["body",5],["population",4],["traits",[]]]'
 		self.json_spec22 = '[["food",2],["body",2],["population",2],["traits",[]]]'
@@ -94,13 +97,13 @@ class TestMakeJSON(unittest.TestCase):
 		self.json_player4 = '[["id",1],["species",[[["food",0],["body",4],["population",2],["traits",["carnivore"]]]]],["bag",0]]'
 		self.json_player5 = '[["id",2],["species",[[["food",1],["body",3],["population",3],["traits",["herding"]]],[["food",1],["body",2],["population",4],["traits",["carnivore", "ambush"]]]]],["bag",0]]'
 		self.json_player6 = '[["id",3],["species",[[["food",0],["body",1],["population",2],["traits",[]]]]],["bag",0]]'
-		self.json_player7 = '[["id",1],["species",[[["food",0],["body",1],["population",1],["traits",["symbiosis"]]],[["food",0],["body",3],["population",1],["traits",["warning-call"]]]]],["bag",0]]'
-		self.json_player8 = '[["id",2],["species",[[["food",2],["body",2],["population",2],["traits",[]]],[["food",0],["body",1],["population",1],["traits",[]]]]],["bag",0]]'
+		self.json_player7 = '[["id",1],["species",[[["food",0],["body",1],["population",1],["traits",["symbiosis"]]]]],["bag",0]]'
+		self.json_player8 = '[["id",2],["species",[[["food",0],["body",3],["population",1],["traits",["warning-call"]]],[["food",2],["body",2],["population",2],["traits",[]]]]],["bag",0]]'
 		self.json_player9 = '[["id",3],["species",[[["food",0],["body",1],["population",1],["traits",[]]]]],["bag",0]]'
-		self.json_player10 = '[["id",1],["species",[[["food",0],["body",5],["population",1],["traits",["fat-tissue"]],["fat-food", 6]],[["food",0],["body",6],["population",1],["traits",["warning-call"]]]]],["bag",0]]'
+		self.json_player10 = '[["id",1],["species",[[["food",0],["body",5],["population",1],["traits",["fat-tissue"]],["fat-food",5]],[["food",0],["body",6],["population",1],["traits",["warning-call"]]]]],["bag",0]]'
 		self.json_player11 = '[["id",2],["species",[[["food",2],["body",2],["population",2],["traits",[]]],[["food",0],["body",1],["population",1],["traits",[]]]]],["bag",0]]'
 		self.json_player12 = '[["id",3],["species",[[["food",0],["body",1],["population",1],["traits",[]]]]],["bag",0]]'
-		self.json_player13 = '[["id",1],["species",[[["food",0],["body",3],["population",2],["traits",["carnivore", "fat-tissue"]]["fat-food", 5]]]],["bag",0]]'
+		self.json_player13 = '[["id",1],["species",[[["food",0],["body",3],["population",2],["traits",["carnivore", "fat-tissue"]],["fat-food",3]]]],["bag",0]]'
 		self.json_player14 = '[["id",2],["species",[[["food",3],["body",3],["population",6],["traits",[]]],[["food",0],["body",5],["population",4],["traits",[]]]]],["bag",0]]'
 		self.json_player15 = '[["id",3],["species",[[["food",2],["body",2],["population",2],["traits",[]]]]],["bag",0]]'
 		self.json_player16 = '[["id",3],["species",[]],["bag",0]]'
@@ -311,17 +314,17 @@ class TestMakeJSON(unittest.TestCase):
 
 
 
-	# def test_make_meal(self):
-	# 	self.assertEqual(self.make_json.make_meal(False), self.false)
+	def test_make_meal(self):
+		self.assertEqual(self.make_json.make_meal(False), self.false)
 
-	# def test_make_meal2(self):
-	# 	self.assertEqual(self.make_json.make_meal([self.spec1]), json.dumps(self.json_spec1))
+	def test_make_meal2(self):
+		self.assertEqual(self.make_json.make_meal([self.spec1]), json.dumps(self.json_spec1))
 
-	# def test_make_meal3(self):
-	# 	self.assertEqual(self.make_json.make_meal([self.spec14]), json.dumps(self.json_spec14))
+	def test_make_meal3(self):
+		self.assertEqual(self.make_json.make_meal([self.spec14]), json.dumps(self.json_spec14))
 
-	# def test_make_meal4(self):
-	# 	self.assertEqual(self.make_json.make_meal([self.spec2, 2]), json.dumps("[" + self.json_spec2 + ",2]"))
+	def test_make_meal4(self):
+		self.assertEqual(self.make_json.make_meal([self.spec2, 2]), json.dumps("[" + self.json_spec2 + ",2]"))
 
 	# def test_make_meal5(self):
 	# 	# print "THE FIRST SPEC (5): "
@@ -340,10 +343,9 @@ class TestMakeJSON(unittest.TestCase):
 	# 	self.assertEqual(self.make_json.make_meal([self.spec5, self.player5, self.spec7]), json.dumps("[" + self.json_spec5 + ",{},{}]".format(self.json_player5, self.json_spec7)))
 
 
-	# def test_make_attack(self):
-	# 	self.assertEqual(self.make_json.make_attack(False), self.false)
-	# 	self.assertEqual(self.make_json.make_attack(True), self.true)
-
+	def test_make_attack(self):
+		self.assertEqual(self.make_json.make_attack(False), self.false)
+		self.assertEqual(self.make_json.make_attack(True), self.true)
 
 
 if __name__ == '__main__':
