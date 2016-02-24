@@ -21,10 +21,8 @@ class ParseJSON:
 		species_list = []
 		for speciesboard in situation:
 			if speciesboard:
-				s = species.Species(speciesboard[0][1], speciesboard[1][1],speciesboard[2][1],[])
-				for t in speciesboard[3][1]:
-					s.setTraits([trait.Trait(t)])
-				species_list.append(s)
+				s = self.parse_loSpecies([speciesboard])
+				species_list + s
 			else:
 				species_list.append(False)
 		return species_list
@@ -72,12 +70,18 @@ class ParseJSON:
      				["species",LOS],
      				["bag",Natural]]
 		"""
-		ident = jplayer[0][1]
-		species = self.parse_loSpecies(jplayer[1][1])
-		bag = jplayer[2][1]
+		keywords = ((jplayer[0][0] == "id") and (jplayer[1][0] == "species") and (jplayer[2][0] == "bag"))
+		if jplayer and keywords:
+			ident = jplayer[0][1]
+			species = self.parse_loSpecies(jplayer[1][1])
+			bag = jplayer[2][1]
 
-		if (ident > 1) and (bag >= 0):
-			return player.Player(ident, species, bag)
+			if (ident > 0) and (bag >= 0):
+				return player.Player(ident, species, bag)
+			else:
+				raise Exception("Invalid player specifications")
+		else: 
+			raise Exception("No player given")
 
 
 
