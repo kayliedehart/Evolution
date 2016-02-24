@@ -30,7 +30,7 @@ class TestHarness:
 
 		result = test_player.feed(players_list)
 
-		m_json.make_meal(result)
+		print m_json.make_meal(result)
 
 if __name__ == "__main__":
 	TestHarness()
