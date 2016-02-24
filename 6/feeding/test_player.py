@@ -51,11 +51,11 @@ class TestPlayer(unittest.TestCase):
 
   def testSimpleCarnivore(self):
     self.player.setSpeciesBoards([self.carnivore])
-    self.assertEqual(self.player.feed(self.opponents), (self.carnivore, self.opponent1, self.opherb))
+    self.assertEqual(self.player.feed(self.opponents), [self.carnivore, self.opponent1, self.opherb])
 
   def testSimpleFatTissue(self):
     self.player.setSpeciesBoards([self.fat_tissue, self.fat_tissue2])
-    self.assertEqual(self.player.feed(self.opponents), (self.fat_tissue2, 4))
+    self.assertEqual(self.player.feed(self.opponents), [self.fat_tissue2, 4])
 
   def testSimpleEmpty(self):
     self.assertEqual(self.player.feed(self.opponents), False)

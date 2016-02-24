@@ -4,6 +4,7 @@
 from feeding import player
 from feeding import parse_json
 from feeding import make_json
+import json
 import sys
 
 
@@ -15,18 +16,21 @@ class TestHarness:
 		"""
 		Get input from stdin, parse, and get Player's response, parse, and return to stdout
 		"""
-		situation = json.load(sys.stdin)
+		feeding = json.load(sys.stdin)
 
-		parse_json = parse_json.ParseJSON()
-		make_json = make_json.MakeJSON()
+		p_json = parse_json.ParseJSON()
+		m_json = make_json.MakeJSON()
 
-		feeding = parse_json.parse_feeding(feeding)
+		feeding_py = p_json.parse_feeding(feeding)
 
-		test_player, free_food, players_list = feeding
+		if not feeding_py:
+			raise Exception("No valid feeding situation received")
+
+		test_player, free_food, players_list = feeding_py
 
 		result = test_player.feed(players_list)
 
-		make_json.make_meal(result)
+		m_json.make_meal(result)
 
 if __name__ == "__main__":
 	TestHarness()

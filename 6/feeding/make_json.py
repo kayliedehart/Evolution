@@ -83,8 +83,8 @@ class MakeJSON:
 				elif isinstance(item, player.Player):
 					meal = meal + "," + (self.make_player(item)) + ","
 			meal = meal + "]"
-		# return json.dump(meal, sys.stdout)
-		return json.dumps(meal)
+		return json.dump(meal, sys.stdout)
+		#return json.dumps(meal)
 
 	def make_attack(self, attack):
 		"""
