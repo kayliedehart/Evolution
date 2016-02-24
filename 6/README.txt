@@ -60,10 +60,14 @@ Note: the trait.py file does not have a unit test file due to it being exclusive
 
 6/xfeed.py is a test harness for testing the player's feed method
 
+6/xfeed is an executable for the test harness 6/xfeed.py
+
 READING/RUNNING THE CODE:
 In order for the code to run you must run ./compile in the 6 directory
 
-All the unit test files (named test_) can be run on the command line by typing 'python <filename>'
+To run the test harness for the feed method, run ./xfeed
+
+All the unit test files (named test_) can be run in a virtualenv first running 'pip install enum34' and then 'python <filename>'
 
 To read the feed method code, start in player.py file in the feed method and read into the other files as necessary.
 
