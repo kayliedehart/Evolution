@@ -68,11 +68,9 @@ class MakeJSON:
 			[Species+, Player, Species+]
 		"""
 		if not feeding_out:
-			return json.dumps(False)
-			# return json.dump(False, sys.stdout)
+			return json.dump(False, sys.stdout)
 		if len(feeding_out) == 1:
-			return json.dumps(self.make_speciesPlus(feeding_out[0]))
-			# return json.dump(self.make_speciesPlus(feeding_out[0]), sys.stdout)
+			return json.dump(json.loads(self.make_speciesPlus(feeding_out[0])), sys.stdout)
 		else:
 			meal = "["
 			for item in feeding_out:
@@ -83,13 +81,13 @@ class MakeJSON:
 				elif isinstance(item, player.Player):
 					meal = meal + "," + (self.make_player(item)) + ","
 			meal = meal + "]"
-		#return json.dump(meal, sys.stdout)
-		return json.dumps(meal)
+			m = json.loads(meal)
+		return json.dump(m, sys.stdout)
 
 	def make_attack(self, attack):
 		"""
 		Construct a JSON message to describe the result of an species' attack scenario (Boolean)
 		"""
 
-		return json.dumps(attack)
-		# return json.dump(attack, sys.stdout)
+		#return json.dumps(attack)
+		return json.dump(attack, sys.stdout)
