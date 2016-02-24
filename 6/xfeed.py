@@ -1,6 +1,4 @@
-#!/usr/bin/env python
 # a test harness for the feed method in Player for a game of Evolution
-
 from feeding import player
 from feeding import parse_json
 from feeding import make_json

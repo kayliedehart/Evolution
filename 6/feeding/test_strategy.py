@@ -1,3 +1,4 @@
+# Unit tests for initial Player Strategy in Evolution
 import unittest
 import dealer
 import species
