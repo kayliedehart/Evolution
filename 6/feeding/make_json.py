@@ -12,11 +12,18 @@ class MakeJSON:
 	def __init__(self):
 		pass
 
-	def parseTraits(self, str_traits):
+	def parseTraits(self, traits):
 		"""
 		Corrects the quotes so that the object returns correctly
 		"""
-		new_str =  str_traits.replace("'", '"')
+		new_str = "["
+		for t in traits:
+			str_trait = '\"' + t.value + '\"'
+			if (traits.index(t) != len(traits)-1):
+				str_trait = str_trait + ','
+			new_str = new_str + str_trait
+		new_str = new_str + "]"
+		new_str =  new_str.replace("'", '"')
 		return new_str
 
 	def make_speciesPlus(self, speciesPlus):
@@ -25,11 +32,11 @@ class MakeJSON:
 		"""
 		str_species = ('[["food",{}],["body",{}],["population",{}],'.format(
 																							 speciesPlus.getFood(),
-																						   speciesPlus.getPopulation(),
-																						   speciesPlus.getBodySize()))
-		str_species = str_species + '["traits",' + self.parseTraits('{}]'.format(speciesPlus.getTraits()))
+																						   speciesPlus.getBodySize(),
+																						   speciesPlus.getPopulation()))
+		str_species = str_species + '["traits",{}]'.format(self.parseTraits(speciesPlus.getTraits()))
 
-		if 'fat-tissue' in speciesPlus.getTraits():
+		if trait.Trait.fat_tissue in speciesPlus.getTraits():
 			str_species = str_species + ',["fat-food",{}]]'.format(speciesPlus.getFatFood())
 		else:
 			str_species = str_species + "]"

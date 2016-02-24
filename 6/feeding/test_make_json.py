@@ -15,12 +15,12 @@ class TestMakeJSON(unittest.TestCase):
 		self.true = json.dumps(True)
 		self.spec1 = species.Species(0,1,1,["carnivore"])
 		self.spec2 = species.Species(1,3,3,["herding"])
-		self.spec3 = species.Species(1,2,4,["carnivore", "ambush"])
+		self.spec3 = species.Species(1,2,4,["carnivore","ambush"])
 		self.spec4 = species.Species(0,3,2,[])
 
 		self.spec5 = species.Species(0,4,2,["carnivore"])
 		self.spec6 = species.Species(1,3,3,["herding"])
-		self.spec7 = species.Species(1,2,4,["carnivore", "ambush"])
+		self.spec7 = species.Species(1,2,4,["carnivore","ambush"])
 		self.spec8 = species.Species(0,1,2,[])
 
 		self.spec9 = species.Species(0,1,1,["symbiosis"])
@@ -35,7 +35,7 @@ class TestMakeJSON(unittest.TestCase):
 
 		self.spec17 = species.Species(0,1,1,[])
 		self.spec18 = species.Species(0,1,1,[])
-		self.spec19 = species.Species(0,3,2,["carnivore", "fat-tissue"])
+		self.spec19 = species.Species(0,3,2,["carnivore","fat-tissue"])
 		self.spec20 = species.Species(3,3,6,[])
 
 		self.spec21 = species.Species(0,5,4,[])
@@ -70,11 +70,11 @@ class TestMakeJSON(unittest.TestCase):
 
 		self.json_spec1 = '[["food",0],["body",1],["population",1],["traits",["carnivore"]]]'
 		self.json_spec2 = '[["food",1],["body",3],["population",3],["traits",["herding"]]]'
-		self.json_spec3 = '[["food",1],["body",2],["population",4],["traits",["carnivore", "ambush"]]]'
+		self.json_spec3 = '[["food",1],["body",2],["population",4],["traits",["carnivore","ambush"]]]'
 		self.json_spec4 = '[["food",0],["body",3],["population",2],["traits",[]]]'
 		self.json_spec5 = '[["food",0],["body",4],["population",2],["traits",["carnivore"]]]'
 		self.json_spec6 = '[["food",1],["body",3],["population",3],["traits",["herding"]]]'
-		self.json_spec7 = '[["food",1],["body",2],["population",4],["traits",["carnivore", "ambush"]]]'
+		self.json_spec7 = '[["food",1],["body",2],["population",4],["traits",["carnivore","ambush"]]]'
 		self.json_spec8 = '[["food",0],["body",1],["population",2],["traits",[]]]'
 		self.json_spec9 = '[["food",0],["body",1],["population",1],["traits",["symbiosis"]]]'
 		self.json_spec10 = '[["food",0],["body",3],["population",1],["traits",["warning-call"]]]'
@@ -86,16 +86,16 @@ class TestMakeJSON(unittest.TestCase):
 		self.json_spec16 = '[["food",2],["body",2],["population",2],["traits",[]]]'
 		self.json_spec17 = '[["food",0],["body",1],["population",1],["traits",[]]]'
 		self.json_spec18 = '[["food",0],["body",1],["population",1],["traits",[]]]'
-		self.json_spec19 = '[["food",0],["body",3],["population",2],["traits",["carnivore", "fat-tissue"]],["fat-food",3]]'
+		self.json_spec19 = '[["food",0],["body",3],["population",2],["traits",["carnivore","fat-tissue"]],["fat-food",3]]'
 		self.json_spec20 = '[["food",3],["body",3],["population",6],["traits",[]]]'
 		self.json_spec21 = '[["food",0],["body",5],["population",4],["traits",[]]]'
 		self.json_spec22 = '[["food",2],["body",2],["population",2],["traits",[]]]'
 
 		self.json_player1 = '[["id",1],["species",[[["food",0],["body",1],["population",1],["traits",["carnivore"]]]]],["bag",0]]'
-		self.json_player2 = '[["id",2],["species",[[["food",1],["body",3],["population",3],["traits",["herding"]]],[["food",1],["body",2],["population",4],["traits",["carnivore", "ambush"]]]]],["bag",0]]'
+		self.json_player2 = '[["id",2],["species",[[["food",1],["body",3],["population",3],["traits",["herding"]]],[["food",1],["body",2],["population",4],["traits",["carnivore","ambush"]]]]],["bag",0]]'
 		self.json_player3 = '[["id",3],["species",[[["food",0],["body",3],["population",2],["traits",[]]]]],["bag",0]]'
 		self.json_player4 = '[["id",1],["species",[[["food",0],["body",4],["population",2],["traits",["carnivore"]]]]],["bag",0]]'
-		self.json_player5 = '[["id",2],["species",[[["food",1],["body",3],["population",3],["traits",["herding"]]],[["food",1],["body",2],["population",4],["traits",["carnivore", "ambush"]]]]],["bag",0]]'
+		self.json_player5 = '[["id",2],["species",[[["food",1],["body",3],["population",3],["traits",["herding"]]],[["food",1],["body",2],["population",4],["traits",["carnivore","ambush"]]]]],["bag",0]]'
 		self.json_player6 = '[["id",3],["species",[[["food",0],["body",1],["population",2],["traits",[]]]]],["bag",0]]'
 		self.json_player7 = '[["id",1],["species",[[["food",0],["body",1],["population",1],["traits",["symbiosis"]]]]],["bag",0]]'
 		self.json_player8 = '[["id",2],["species",[[["food",0],["body",3],["population",1],["traits",["warning-call"]]],[["food",2],["body",2],["population",2],["traits",[]]]]],["bag",0]]'
@@ -103,7 +103,7 @@ class TestMakeJSON(unittest.TestCase):
 		self.json_player10 = '[["id",1],["species",[[["food",0],["body",5],["population",1],["traits",["fat-tissue"]],["fat-food",5]],[["food",0],["body",6],["population",1],["traits",["warning-call"]]]]],["bag",0]]'
 		self.json_player11 = '[["id",2],["species",[[["food",2],["body",2],["population",2],["traits",[]]],[["food",0],["body",1],["population",1],["traits",[]]]]],["bag",0]]'
 		self.json_player12 = '[["id",3],["species",[[["food",0],["body",1],["population",1],["traits",[]]]]],["bag",0]]'
-		self.json_player13 = '[["id",1],["species",[[["food",0],["body",3],["population",2],["traits",["carnivore", "fat-tissue"]],["fat-food",3]]]],["bag",0]]'
+		self.json_player13 = '[["id",1],["species",[[["food",0],["body",3],["population",2],["traits",["carnivore","fat-tissue"]],["fat-food",3]]]],["bag",0]]'
 		self.json_player14 = '[["id",2],["species",[[["food",3],["body",3],["population",6],["traits",[]]],[["food",0],["body",5],["population",4],["traits",[]]]]],["bag",0]]'
 		self.json_player15 = '[["id",3],["species",[[["food",2],["body",2],["population",2],["traits",[]]]]],["bag",0]]'
 		self.json_player16 = '[["id",3],["species",[]],["bag",0]]'

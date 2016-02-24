@@ -12,12 +12,14 @@ class Species:
 	traits = []
 	fat_food = 0
 
-	def __init__(self, food, population, bodysize, traits):
+	def __init__(self, food, bodysize, population, traits):
 		self.food = food
 		self.population = population
 		self.bodysize = bodysize
-		self.traits = traits
 		self.fat_food = 0
+		self.traits = []
+		for t in traits:
+			self.traits.append(trait.Trait(t))
 
 	def getFood(self):
 		"""

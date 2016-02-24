@@ -51,10 +51,15 @@ class ParseJSON:
 		"""
 		species_list = []
 		for speciesboard in LOS:
-			# TODO CONTRACT CHECKING
-			this_species = species.Species(speciesboard[0][1], speciesboard[1][1], speciesboard[2][1], self.parse_traits(speciesboard[3][1]))
-			if (trait.Trait.fat_tissue in this_species.getTraits()) and speciesboard[4][1]:
-				this_species.setFood(species[4][1])
+			keywords = ((speciesboard[0][0] == "food") and (speciesboard[1][0] == "body")
+						 and (speciesboard[2][0] == "population") and (speciesboard[3][0] == "traits"))
+			if speciesboard and keywords:
+				this_species = species.Species(speciesboard[0][1], speciesboard[1][1], speciesboard[2][1], self.parse_traits(speciesboard[3][1]))
+				if this_species.hasFatTissue():
+					try:
+						this_species.setFatFood(speciesboard[4][1])
+					except IndexError:
+						pass
 				species_list.append(this_species)
 		return species_list
 
