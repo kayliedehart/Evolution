@@ -20,13 +20,16 @@ class TestHarness:
 		"""
 		situation = json.load(sys.stdin)
 
-		species_list = self.parse_situation(situation)
+		p_json = parse_json.ParseJSON()
+		m_json = make_json.MakeJSON()
 
-		test_species = species.Species()
+		species_list = p_json.parse_situation(situation)
 
-		result = test_species.attackable(species_list)
+		attacker, defender, neighborRight, neighborLeft = species_list
 
-		make_json.make_attack(result)
+		result = attacker.attackable(species_list)
+
+		m_json.make_attack(result)
 
 if __name__ == "__main__":
 	TestHarness()
