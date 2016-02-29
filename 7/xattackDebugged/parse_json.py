@@ -22,7 +22,7 @@ class ParseJSON:
 		for speciesboard in situation:
 			if speciesboard:
 				s = self.parse_loSpecies([speciesboard])
-				species_list + s
+				species_list = species_list + s
 			else:
 				species_list.append(False)
 		return species_list
@@ -59,6 +59,8 @@ class ParseJSON:
 					except IndexError:
 						pass
 				species_list.append(this_species)
+			elif not keywords:
+				raise Exception("Keywords don't match")
 		return species_list
 
 

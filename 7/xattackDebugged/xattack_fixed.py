@@ -6,11 +6,13 @@ import species
 import parse_json
 import make_json
 import sys
+import json
 
 
 class TestHarness:
 	def __init__(self):
-		self.main()
+		#self.main()
+		pass
 
 	def main(self):
 		"""
@@ -35,20 +37,17 @@ class TestHarness:
 		For a given Situation (a JSON of [attacking:Species, defending:Species, (neighbor:Species), (neighbor:Species)],
 			return a Boolean to stdout whether or not the attack is successful. (TESTS)
 		"""
-		situation = json.load(given)
 
 		p_json = parse_json.ParseJSON()
 		m_json = make_json.MakeJSON()
 
-		species_list = p_json.parse_situation(situation)
+		species_list = p_json.parse_situation(given)
 
 		attacker, defender, neighborRight, neighborLeft = species_list
 
 		result = attacker.attackable(species_list)
 
-		m_json.make_attack_test(result)
-
-		return result
+		return m_json.make_attack_test(result)
 
 if __name__ == "__main__":
 	TestHarness()
