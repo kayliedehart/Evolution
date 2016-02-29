@@ -195,7 +195,7 @@ class Species:
 			A Situation is [defender:Species, attacker:Species, (optional neighbor:Species, neighbor:Species)]
 			Returns a Boolean.
 			"""
-			attacker, defender, neighborLeft, neighborRight = situation
+			defender, attacker, neighborLeft, neighborRight = situation
 			if trait.Trait.carnivore in attacker.traits:
 				if attacker is defender:
 					raise Exception("A species cannot attack itself")
