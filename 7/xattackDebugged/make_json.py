@@ -89,5 +89,11 @@ class MakeJSON:
 		Construct a JSON message to describe the result of an species' attack scenario (Boolean)
 		"""
 
-		#return json.dumps(attack)
 		return json.dump(attack, sys.stdout)
+
+	def make_attack_test(self, attack):
+		"""
+		Show the result of an attack, but don't print to stdout (for testing purposes)
+		"""
+
+		return json.dumps(attack)
