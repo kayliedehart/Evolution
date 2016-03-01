@@ -32,8 +32,15 @@ FILES:
 
 7/xfeed/test_xattack.py is a revised version of the unit tests for xattack.py
 
+7/xfeed/trait.py is a copy of the previously implemented trait.py
 
+7/xfeed/xattack.py is a revised copy of the previous implementation of xattack.py
 
+7/xfeed/xfeed.py is a revised copy of the previous implementation of xfeed.py
+
+7/xfeed/xfeed is an executable for the feed method test harness
+
+7/xfeed/xattack is an executable for the attack method test harness
 
 
 
@@ -41,6 +48,8 @@ READING/RUNNING THE CODE:
 In order for the code to run you must run ./compile in the 7 directory
 
 To run the test harness for the feed method, run ./xfeed from the xfeed directory
+
+To run the test harness for the attack method, run ./xattack from the xfeed directory
 
 To run the JSON echo program, run ./xstream from the Streaming directory
 
