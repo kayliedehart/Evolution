@@ -83,27 +83,34 @@ class Player:
     """
     Determines which species the player is going to feed
     Given: a list of players not containing this player
-    Returns: either False (if a player can't feed any species), or a list of either
-      a species in self.species_boards,
-      a species in self.species_boards with the trait fat_tissue and a nat,
-      a species in self.species_boards with the trait carnivore and a player in the given list of players
-        and an attackable species owned by the prior player
+    Returns: one of 
+      -False (if a player can't feed any species)
+      -the index of a species in self.species_boards,
+      -[the index of a species in self.species_boards with the trait fat_tissue, Nat]
+      -[the index of a species in self.species_boards with the trait carnivore, 
+          the index of the player in the given list of players, 
+          and the index of an attackable species owned by the prior player]
     """
     if (not self.canFeed()):
       return False
 
     chosen, trait = self.strat.feedNext(self.species_boards)
+    print "THE SPECIESBOARDS {}".format(self.species_boards)
+    print chosen
+    ichosen = self.species_boards.index(chosen)
 
     if (not trait):
-      return (chosen)
+      return ichosen
     elif (trait.carnivore is trait):
       victim = self.strat.pickVictim(chosen, lop)
       if (not victim):
         return False
       else:
         play, board = victim
-        return [chosen, play, board]
+        iplay = lop.index(play)
+        iboard = play.getSpeciesBoards().index(board)
+        return [ichosen, iplay, iboard]
     else:
-      return [chosen, ((chosen.getPopulation() + chosen.getBodySize()) - (chosen.getFood() + chosen.getFatFood()))]
+      return [ichosen, ((chosen.getPopulation() + chosen.getBodySize()) - (chosen.getFood() + chosen.getFatFood()))]
 
 

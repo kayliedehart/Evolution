@@ -80,7 +80,7 @@ class Strategy:
     """
       Determines the next species that needs to be fed
       Given: a list of species
-      Returns: A tuple of the fatest hungery species of the most prioritized species (fat_tissue -> herbivore -> carnivore) and one of Trait.fat_tissue, Trait.carnivore, False
+      Returns: A tuple of the fattest hungry species of the most prioritized species (fat_tissue -> herbivore -> carnivore) and one of Trait.fat_tissue, Trait.carnivore, False
       corresponding to the trait that species posesses.
     """
     fat_species = []

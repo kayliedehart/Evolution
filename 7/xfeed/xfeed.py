@@ -8,7 +8,8 @@ import sys
 
 class TestHarness:
 	def __init__(self):
-		self.main()
+		#self.main()
+		pass
 
 	def main(self):
 		"""
@@ -28,12 +29,12 @@ class TestHarness:
 
 		result = test_player.feed(players_list)
 
-		m_json.make_meal(result)
+		print m_json.make_meal(result)
 
 	def testMethod(self, given):
 		"""
-		Get input from stdin, parse, and get Player's response, parse, and return to stdout
-		TESTS
+		Method to unit test xfeed, feeding in a JSON from the method rather than stdin and
+		returning the result rather than printing tp stdout
 		"""
 		p_json = parse_json.ParseJSON()
 		m_json = make_json.MakeJSON()
