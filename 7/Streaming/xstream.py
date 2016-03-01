@@ -1,8 +1,8 @@
+#!/usr/bin/env python
 # Echo program to count and echo JSON input from stdin
 import os, sys
 import json
 from json import JSONDecoder
-import atexit
 
 class EchoStream:
 	previous = ""

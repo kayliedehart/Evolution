@@ -42,6 +42,8 @@ FILES:
 
 7/xfeed/xattack is an executable for the attack method test harness
 
+7/xfeed/compile is an executable that compiles the Evolution files
+
 
 
 READING/RUNNING THE CODE:
