@@ -11,8 +11,8 @@ import json
 
 class TestHarness:
 	def __init__(self):
-		#self.main()
-		pass
+		self.main()
+		#pass
 
 	def main(self):
 		"""

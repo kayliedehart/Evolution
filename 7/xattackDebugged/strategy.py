@@ -148,7 +148,7 @@ class Strategy:
     for playerSpecies in boardsAndPlayers:
       board, play = playerSpecies
       left, right = self.getNeighbors(play, board)
-      situation = [chosen, board, left, right]
+      situation = [board, chosen, left, right]
       if board.attackable(situation):
         return play, board
 

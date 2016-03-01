@@ -364,6 +364,76 @@ class TestXAttack(unittest.TestCase):
 
   def test_0357_6344(self):
     self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_1_in), self.case_0357_6344_1_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_5_in), self.case_0357_6344_5_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_8_in), self.case_0357_6344_8_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_9_in), self.case_0357_6344_9_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_11_in), self.case_0357_6344_11_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_12_in), self.case_0357_6344_12_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_13_in), self.case_0357_6344_13_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_14_in), self.case_0357_6344_14_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_15_in), self.case_0357_6344_15_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0357_6344_16_in), self.case_0357_6344_16_out)
+
+  def test_0623_8070(self):
+    self.assertEqual(self.tester_xattack.testMethod(self.case_0623_8070_1_in), self.case_0623_8070_1_out)
+
+  def test_1073_6112(self):
+    self.assertEqual(self.tester_xattack.testMethod(self.case_1073_6112_3_in), self.case_1073_6112_3_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_1073_6112_4_in), self.case_1073_6112_4_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_1073_6112_5_in), self.case_1073_6112_5_out)
+
+  def test_2657_7498(self):
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_1_in), self.case_2657_7498_1_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_2_in), self.case_2657_7498_2_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_3_in), self.case_2657_7498_3_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_4_in), self.case_2657_7498_4_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_5_in), self.case_2657_7498_5_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_6_in), self.case_2657_7498_6_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_8_in), self.case_2657_7498_8_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_9_in), self.case_2657_7498_9_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_10_in), self.case_2657_7498_10_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_12_in), self.case_2657_7498_12_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_2657_7498_14_in), self.case_2657_7498_14_out)
+
+  def test_9634_1853(self):
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_1_in), self.case_9634_1853_1_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_3_in), self.case_9634_1853_3_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_4_in), self.case_9634_1853_4_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_5_in), self.case_9634_1853_5_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_7_in), self.case_9634_1853_7_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_8_in), self.case_9634_1853_8_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_9_in), self.case_9634_1853_9_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_10_in), self.case_9634_1853_10_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_11_in), self.case_9634_1853_11_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_13_in), self.case_9634_1853_13_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_14_in), self.case_9634_1853_14_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_18_in), self.case_9634_1853_18_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.case_9634_1853_20_in), self.case_9634_1853_20_out)
+
+  def test_matthias(self):
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_1_in), self.matthias_1_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_2_in), self.matthias_2_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_3_in), self.matthias_3_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_4_in), self.matthias_4_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_5_in), self.matthias_5_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_6_in), self.matthias_6_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_7_in), self.matthias_7_out)
+
+  def test_mattias8(self):
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_8_in), self.matthias_8_out)
+
+  def test_mattias_rest(self):
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_9_in), self.matthias_9_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_10_in), self.matthias_10_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_11_in), self.matthias_11_out)
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_12_in), self.matthias_12_out)
+
+  def test_mattias13(self):
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_13_in), self.matthias_13_out)
+
+  def test_mattias14(self):
+    self.assertEqual(self.tester_xattack.testMethod(self.matthias_14_in), self.matthias_14_out)
+
 
 
 if __name__ == '__main__':

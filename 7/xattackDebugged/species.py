@@ -4,6 +4,7 @@ import trait
 from random import randint
 
 MAXTRAITS = 3
+HARDSHELLLARGER = 3
 
 class Species:
 	food = 0
@@ -176,17 +177,16 @@ class Species:
 		"""
 		Returns whether a defender with hard_shell can defend against their attacker
 		"""
-		return (attacker.getBodySize() - defender.getBodySize()) <= 3
+		if trait.Trait.pack_hunting in attacker.traits:
+			return (defender.getBodySize() + HARDSHELLLARGER) >= (attacker.getBodySize() + attacker.getPopulation())
+		else:
+			return (attacker.getBodySize() - defender.getBodySize()) <= HARDSHELLLARGER
 
 	def herdingHelp(self, attacker, defender):
 		"""
 		Returns whether a defender with herding can successfully block an attacker
 		"""
-	 	attackers_popsize = attacker.getPopulation()
-		if trait.Trait.pack_hunting in attacker.traits:
-			attackers_popsize += attacker.getBodySize()
-
-		return attackers_popsize <= defender.getPopulation()
+	 	return attacker.getPopulation() <= defender.getPopulation()
 
 
 	def attackable(self, situation):
