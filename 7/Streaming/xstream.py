@@ -47,9 +47,9 @@ class EchoStream:
 					for echo in echo_frag:
 						print echo	
 						msg_count["count"] += 1
-			except KeyboardInterrupt or EOFError:
-				print msg_count
-				sys.exit()
+			except EOFError:
+					print msg_count
+					sys.exit()
 		
 
 
