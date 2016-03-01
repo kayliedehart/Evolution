@@ -83,20 +83,18 @@ class Player:
     """
     Determines which species the player is going to feed
     Given: a list of players not containing this player
-    Returns: one of 
+    Returns: one of
       -False (if a player can't feed any species)
       -the index of a species in self.species_boards,
       -[the index of a species in self.species_boards with the trait fat_tissue, Nat]
-      -[the index of a species in self.species_boards with the trait carnivore, 
-          the index of the player in the given list of players, 
+      -[the index of a species in self.species_boards with the trait carnivore,
+          the index of the player in the given list of players,
           and the index of an attackable species owned by the prior player]
     """
     if (not self.canFeed()):
       return False
-
     chosen, trait = self.strat.feedNext(self.species_boards)
-    print "THE SPECIESBOARDS {}".format(self.species_boards)
-    print chosen
+
     ichosen = self.species_boards.index(chosen)
 
     if (not trait):

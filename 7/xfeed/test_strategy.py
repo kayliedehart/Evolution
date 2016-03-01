@@ -53,31 +53,31 @@ class TestStrategy(unittest.TestCase):
 
   def testFatTissueFirst(self):
     self.player.setSpeciesBoards([self.herbavore, self.fat_tissue])
-    self.assertEqual(self.player.feed(self.opponents), (self.fat_tissue, 4))
+    self.assertEqual(self.player.feed(self.opponents), [1, 4])
 
   def testBiggestFatTissueFirst(self):
     self.player.setSpeciesBoards([self.fat_tissue, self.fat_fat_tissue])
-    self.assertEqual(self.player.feed(self.opponents), (self.fat_fat_tissue, 7))
+    self.assertEqual(self.player.feed(self.opponents), [1, 7])
 
   def testHerbBeforeCarni(self):
     self.player.setSpeciesBoards([self.herbavore, self.carnivore])
-    self.assertEqual(self.player.feed(self.opponents), (self.herbavore))
+    self.assertEqual(self.player.feed(self.opponents), 0)
 
   def testLargestHerbFirst(self):
     self.player.setSpeciesBoards([self.herbavore, self.fat_herbavore])
-    self.assertEqual(self.player.feed(self.opponents), (self.fat_herbavore))
+    self.assertEqual(self.player.feed(self.opponents), 1)
 
   def testLargestCarnivoreFirstIfAllHerbFed(self):
     self.herbavore.setFood(1)
     self.player.setSpeciesBoards([self.herbavore, self.carnivore, self.fat_carnivore])
-    self.assertEqual(self.player.feed(self.opponents), (self.fat_carnivore, self.opponent1, self.opfatherb))
+    self.assertEqual(self.player.feed(self.opponents), [2, 0, 1])
 
   def testWontAttackSelf(self):
     self.player.setSpeciesBoards([self.fat_carnivore])
     self.opponents = []
     self.assertEqual(self.player.feed(self.opponents), False)
 
-  #Unit Test Helper Methods
+  # #Unit Test Helper Methods
   def testSortByLexPop(self):
     self.herbavore.setPopulation(1)
     self.carnivore.setPopulation(3)

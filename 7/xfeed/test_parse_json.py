@@ -411,7 +411,7 @@ class TestParseJSON(unittest.TestCase):
 	def test_parseSituation2(self):
 		self.assertEqualSpecies(self.parse_json.parse_situation([self.json_spec3, self.json_spec15, self.json_spec4, self.json_spec22]),[self.spec3, self.spec15, self.spec4, self.spec22])
 
-	
+
 	def assertEqualSpecies(self, jspecies, exspecies):
 		"""Tests the fields in two lists of species for equivalency
 		"""

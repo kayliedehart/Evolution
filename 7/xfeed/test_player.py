@@ -48,8 +48,10 @@ class TestPlayer(unittest.TestCase):
   # Feed Tests
   def testSimpleHerbavore(self):
     self.player.setSpeciesBoards([self.herbavore, self.herbavore2])
-    print "PLAYER SB IS {}".format(self.player.species_boards)
-    self.assertEqual(self.player.feed(self.opponents), 1)
+    self.assertEqual(self.player.feed(self.opponents), 0)
+
+
+
 
   def testSimpleCarnivore(self):
     self.player.setSpeciesBoards([self.carnivore])
@@ -58,6 +60,9 @@ class TestPlayer(unittest.TestCase):
   def testSimpleFatTissue(self):
     self.player.setSpeciesBoards([self.fat_tissue, self.fat_tissue2])
     self.assertEqual(self.player.feed(self.opponents), [1, 4])
+
+
+
 
   def testSimpleEmpty(self):
     self.assertEqual(self.player.feed(self.opponents), False)
@@ -68,10 +73,15 @@ class TestPlayer(unittest.TestCase):
     self.player.setSpeciesBoards([self.herbavore, self.carnivore])
     self.assertEqual(self.player.feed(self.opponents), False)
 
+
+
   def testImpossibleCarnivoreAttack(self):
     self.player.setSpeciesBoards([self.carnivore])
     self.opponent1.setSpeciesBoards([self.opfatherb])
     self.assertEqual(self.player.feed(self.opponents), False)
+
+
+
 
   def testSequencingConstraintOneHungry(self):
     self.player.setSpeciesBoards([self.herbavore])

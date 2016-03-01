@@ -15,12 +15,14 @@ class Strategy:
     sloa = []
     if(len(loa) == 0):
       return loa
-    sloa.append(loa.pop())
+    sloa.append(loa[0])
 
-    if(len(loa) > 0):
+    if(len(loa) > 1):
       for animal in loa:
         for board in sloa:
-          if (animal.getPopulation() > board.getPopulation()):
+          if (loa.index(animal) == 0):
+            break
+          elif (animal.getPopulation() > board.getPopulation()):
             sloa.insert(sloa.index(board), animal)
             break
           elif ((animal.getPopulation() == board.getPopulation())
@@ -35,6 +37,7 @@ class Strategy:
           elif (sloa.index(board) == (len(sloa)-1) ):
             sloa.append(animal)
             break
+
     return sloa
 
   def stereotypeAnimals(self, lob):
@@ -56,7 +59,6 @@ class Strategy:
           carnivores.append(animal)
         else:
           herbivores.append(animal)
-
     return (fat_species, carnivores, herbivores)
 
   def findFattest(self, fat_species, carnivores, herbivores):
@@ -88,8 +90,8 @@ class Strategy:
     herbivores = []
 
     sortedSpeciesBoards = self.sortByLex(lob)
-
     fat_species, carnivores, herbivores = self.stereotypeAnimals(sortedSpeciesBoards)
+
     return self.findFattest(fat_species, carnivores, herbivores)
 
   def compileSpecies(self, lop):
@@ -111,6 +113,7 @@ class Strategy:
       Returns: a list of tuples ordered by species body size (large -> small) that contain a player and a species that player owns
     """
     return sorted(lobap, key=lambda board_player: board_player[0].getBodySize(), reverse = True)
+
 
   def getNeighbors(self, play, board):
     """
@@ -141,9 +144,9 @@ class Strategy:
     #compile lists of all species
     boardsAndPlayers = self.compileSpecies(lop)
 
+
     #sort it in order of size.
     boardsAndPlayers = self.sortOpponentsSpecies(boardsAndPlayers)
-
     #go down the list until it finds something it can eat
     for playerSpecies in boardsAndPlayers:
       board, play = playerSpecies
