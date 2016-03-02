@@ -5,6 +5,7 @@ import species
 import trait
 import json
 
+#NOTE: Unittests will not run unless the call to the main function is commented out in xfeed's init
 class TestXFeed(unittest.TestCase):
   def setUp(self):
     self.tester_xfeed = xfeed.TestHarness()
@@ -2075,6 +2076,19 @@ class TestXFeed(unittest.TestCase):
     self.case_matthias_11_in = [[["id",11],["species",[[["food",3],["body",3],["population",3],["traits",["fat-tissue","climbing"]],["fat-food",1]]]],["bag",0]],2,[]]
     self.case_matthias_11_out = '[0, 2]'
 
+    self.case_failing_input = [[["id",11],
+                                ["species",
+                                  [[["food",3],
+                                    ["body",3],
+                                    ["population",3],
+                                    ["traits",
+                                      ["fat-tissue","climbing"]],
+                                    ["fat-food",2]]]],
+                                ["bag",0]],
+                                3,
+                                []]
+    self.case_failing_output = '[0, 1]'
+
   def tearDown(self):
     del self.case_0623_8070_3_in
     del self.case_0623_8070_3_out
@@ -2203,16 +2217,18 @@ class TestXFeed(unittest.TestCase):
     del self.case_matthias_11_in
     del self.case_matthias_11_out
 
-  def test_0623_8070(self):
-    #this test breaks the sequencing constraints because there is only one hungery species and it's a herbavore
-    #which is illegal according to the specs.
-    #self.assertEqual(self.tester_xfeed.testMethod(self.case_0623_8070_3_in), self.case_0623_8070_3_out)
-    pass
+    del self.case_failing_input
 
-  def test_1073_6112(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_1073_6112_5_in), self.case_1073_6112_5_out)
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_1073_6112_6_in), self.case_1073_6112_6_out)
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_1073_6112_7_in), self.case_1073_6112_7_out)
+  # def test_0623_8070(self):
+  #   #this test breaks the sequencing constraints because there is only one hungery species and it's a herbavore
+  #   #which is illegal according to the specs.
+  #   #self.assertEqual(self.tester_xfeed.testMethod(self.case_0623_8070_3_in), self.case_0623_8070_3_out)
+  #   pass
+
+  # def test_1073_6112(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_1073_6112_5_in), self.case_1073_6112_5_out)
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_1073_6112_6_in), self.case_1073_6112_6_out)
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_1073_6112_7_in), self.case_1073_6112_7_out)
 
   # def test_160_4071(self):
   #   self.assertEqual(self.tester_xfeed.testMethod(self.case_1606_4071_1_in), self.case_1606_4071_1_out)
@@ -2230,39 +2246,41 @@ class TestXFeed(unittest.TestCase):
   #   self.assertEqual(self.tester_xfeed.testMethod(self.case_2198_0067_3_in), self.case_2198_0067_3_out)
   #   self.assertEqual(self.tester_xfeed.testMethod(self.case_2198_0067_6_in), self.case_2198_0067_6_out)
 
-  def test_mattias1(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_1_in), self.case_matthias_1_out)
+  # def test_mattias1(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_1_in), self.case_matthias_1_out)
 
-  def test_mattias2(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_2_in), self.case_matthias_2_out)
+  # def test_mattias2(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_2_in), self.case_matthias_2_out)
 
-  def test_mattias3(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_3_in), self.case_matthias_3_out)
+  # def test_mattias3(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_3_in), self.case_matthias_3_out)
 
-  def test_mattias4(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_4_in), self.case_matthias_4_out)
+  # def test_mattias4(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_4_in), self.case_matthias_4_out)
 
-  def test_mattias5(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_5_in), self.case_matthias_5_out)
+  # def test_mattias5(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_5_in), self.case_matthias_5_out)
 
-  def test_mattias6(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_6_in), self.case_matthias_6_out)
+  # def test_mattias6(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_6_in), self.case_matthias_6_out)
 
-  def test_mattias7(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_7_in), self.case_matthias_7_out)
+  # def test_mattias7(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_7_in), self.case_matthias_7_out)
 
-  def test_mattias8(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_8_in), self.case_matthias_8_out)
+  # def test_mattias8(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_8_in), self.case_matthias_8_out)
 
-  def test_mattias9(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_9_in), self.case_matthias_9_out)
+  # def test_mattias9(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_9_in), self.case_matthias_9_out)
 
-  def test_mattias10(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_10_in), self.case_matthias_10_out)
+  # def test_mattias10(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_10_in), self.case_matthias_10_out)
 
-  def test_mattias11(self):
-    self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_11_in), self.case_matthias_11_out)
+  # def test_mattias11(self):
+  #   self.assertEqual(self.tester_xfeed.testMethod(self.case_matthias_11_in), self.case_matthias_11_out)
 
+  def test_failing_json(self):
+    self.assertEqual(self.tester_xfeed.testMethod(self.case_failing_input), self.case_failing_output)
 
 if __name__ == '__main__':
     unittest.main()

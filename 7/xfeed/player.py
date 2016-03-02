@@ -51,35 +51,37 @@ class Player:
       Checks if the call to feed follows the sequencing constraints
       throws an error if it doesn't match specs
       Returns: A boolean regarding if this player can feed a species or not
+      NOTE: WE are not supposed to be doing sequencing checks here
+      We have commented out all the sequence checking code
     """
     #checks if there are not enough species boards
-    if ((len(self.species_boards) != 0)
-      or (not ((len(self.species_boards) == 1)
-        and (self.species_boards[0].isCarnivore())))):
+    # if ((len(self.species_boards) != 0)
+    #   or (not ((len(self.species_boards) == 1)
+    #     and (self.species_boards[0].isCarnivore())))):
 
-      #checks if there are an appropraite number of hungry animals
-      numHungry = 0
-      hungryCarnivore = False
-      for animal in self.species_boards:
-        if animal.getPopulation() > animal.getFood():
-          numHungry += 1
-          if(animal.isCarnivore()):
-            hungryCarnivore = True
-        elif ((animal.isCarnivore() and animal.hasFatTissue())
-          and ((animal.getPopulation() + animal.getBodySize()) > animal.getFood())):
-          numHungry += 1
+    #checks if there are an appropraite number of hungry animals
+    numHungry = 0
+    hungryCarnivore = False
+    for animal in self.species_boards:
+      if animal.getPopulation() > animal.getFood():
+        numHungry += 1
+        if(animal.isCarnivore()):
           hungryCarnivore = True
+      elif ((animal.isCarnivore() and animal.hasFatTissue())
+        and ((animal.getPopulation() + animal.getBodySize()) > animal.getFood())):
+        numHungry += 1
+        hungryCarnivore = True
 
-      if (numHungry == 1) and (not hungryCarnivore):
-        raise Exception("Violation of Sequencing Constraints")
-      if numHungry == 0:
-        return False
-      else:
-        return True
+    # if (numHungry == 1) and (not hungryCarnivore):
+    #   raise Exception("Violation of Sequencing Constraints")
+    if numHungry == 0:
+      return False
     else:
-      raise Exception("Violation of Sequencing Constraints")
+      return True
+    # else:
+    #   raise Exception("Violation of Sequencing Constraints")
 
-  def feed(self, lop):
+  def feed(self, lop, watering):
     """
     Determines which species the player is going to feed
     Given: a list of players not containing this player
@@ -109,6 +111,6 @@ class Player:
         iboard = play.getSpeciesBoards().index(board)
         return [ichosen, iplay, iboard]
     else:
-      return [ichosen, ((chosen.getPopulation() + chosen.getBodySize()) - (chosen.getFood() + chosen.getFatFood()))]
+      return [ichosen, min(watering, (chosen.getBodySize() - chosen.getFatFood()))]
 
 

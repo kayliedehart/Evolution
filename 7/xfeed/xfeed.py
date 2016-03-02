@@ -8,8 +8,7 @@ import sys
 
 class TestHarness:
 	def __init__(self):
-		#self.main()
-		pass
+		self.main()
 
 	def main(self):
 		"""
@@ -27,7 +26,7 @@ class TestHarness:
 
 		test_player, free_food, players_list = feeding_py
 
-		result = test_player.feed(players_list)
+		result = test_player.feed(players_list, free_food)
 
 		print m_json.make_meal(result)
 
@@ -46,7 +45,7 @@ class TestHarness:
 
 		test_player, free_food, players_list = feeding_py
 
-		result = test_player.feed(players_list)
+		result = test_player.feed(players_list, free_food)
 
 		return m_json.make_meal(result)
 

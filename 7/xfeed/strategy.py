@@ -52,10 +52,10 @@ class Strategy:
     herbivores = []
 
     for animal in lob:
+      if (animal.hasFatTissue() and (not animal.isCarnivore())):
+        fat_species.append(animal)
       if (animal.getFood() < animal.getPopulation()):
-        if (animal.hasFatTissue() and (not animal.isCarnivore())):
-          fat_species.append(animal)
-        elif (animal.isCarnivore()):
+        if (animal.isCarnivore()):
           carnivores.append(animal)
         else:
           herbivores.append(animal)
@@ -91,7 +91,6 @@ class Strategy:
 
     sortedSpeciesBoards = self.sortByLex(lob)
     fat_species, carnivores, herbivores = self.stereotypeAnimals(sortedSpeciesBoards)
-
     return self.findFattest(fat_species, carnivores, herbivores)
 
   def compileSpecies(self, lop):
