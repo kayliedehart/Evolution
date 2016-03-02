@@ -71,6 +71,8 @@ class Player:
         and ((animal.getPopulation() + animal.getBodySize()) > animal.getFood())):
         numHungry += 1
         hungryCarnivore = True
+      elif (animal.hasFatTissue() and ((animal.getPopulation() + animal.getBodySize()) > (animal.getFood() + animal.getFatFood()))):
+        numHungry += 1
 
     # if (numHungry == 1) and (not hungryCarnivore):
     #   raise Exception("Violation of Sequencing Constraints")
